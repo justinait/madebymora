@@ -1,0 +1,25 @@
+.titleMora{
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+.subtitleMora{
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+}
+.categoryBox {
+    display: flex;
+    justify-content: flex-end;
+    width: 57%;
+    flex-wrap: wrap;
+    text-align: right;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+.categoryItem {
+    padding: 2px 8px;
+    margin: 0;
+}
