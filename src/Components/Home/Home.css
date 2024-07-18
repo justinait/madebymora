@@ -1,18 +1,23 @@
 .projectTitle {
     font-size: 35px;
     text-align: center;
-    margin: 0;
+    /* margin: 0; */
     font-weight: 100;
+    line-height: 1;
 }
 
 .projectDetail {
     text-align: center;
     font-size: 15px;
+    margin: 0;
+    line-height: 1.5;
 }
 
 .projectDescription {
     text-align: center;
+    margin: 0;
     font-size: 12px;
+    line-height: 1.3;
 }
 .separatorLine {
     border-bottom: 1px solid black;
