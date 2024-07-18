@@ -33,3 +33,7 @@
 .slick-prev, .slick-next {
     display: none !important;
 }
+.carouselContainer {
+    
+    margin: 2em 5px;
+}

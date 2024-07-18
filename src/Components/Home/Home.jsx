@@ -11,7 +11,6 @@ function Home() {
   const [projects, setProjects] = useState([])
 
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -44,7 +43,7 @@ function Home() {
               <p className='projectDetail'>{e.detail}</p>
               <p className='projectDescription'>{e.description}</p>
               
-              <div>
+              <div className='carouselContainer'>
               <Slider {...settings}>
                 {e.images1?.map((el, index) => {
                   const isVideo = el.endsWith('.mp4');
