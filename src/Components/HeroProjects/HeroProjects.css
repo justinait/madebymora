@@ -14,17 +14,24 @@
 }
 .categoryBox {
     display: flex;
-    justify-content: flex-end;
-    width: 57%;
-    flex-wrap: wrap;
-    text-align: right;
-    margin-left: auto;
-    margin-top: 15px;
+    align-items: flex-end;    
+    flex-direction: column;
 }
 
 .categoryItem {
     padding: 2px 8px;
     margin: 0;
+    font-size: 12px;
+}
+.optionsHeroProjects {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    align-items: flex-end;
+    text-transform: uppercase;
+    line-height: 2;
+}
+.aboutLink {
     font-size: 12px;
 }
 
