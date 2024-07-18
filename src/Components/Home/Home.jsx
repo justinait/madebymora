@@ -59,6 +59,20 @@ function Home() {
                     </div>
                   );
                 })}
+                {e.images2?.map((el, index) => {
+                  const isVideo = el.endsWith('.mp4');
+                  return (
+                    <div key={index} className='carouselImageContainer'>
+                      {
+                        isVideo ? (
+                          <video className='imageCarousel' src={el} controls loading="lazy" />
+                        ) : (
+                          <img className='imageCarousel' src={el} loading="lazy" />
+                        )
+                      }
+                    </div>
+                  );
+                })}
               </Slider>
               </div>
 
