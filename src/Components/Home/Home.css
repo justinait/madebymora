@@ -1,6 +1,7 @@
 .projectTitle {
     font-size: 35px;
     text-align: center;
+    margin: 0;
 }
 
 .projectDetail {
@@ -11,4 +12,24 @@
 .projectDescription {
     text-align: center;
     font-size: 12px;
+}
+.separatorLine {
+    border-bottom: 1px solid black;
+    margin: 5px;
+}
+.cantProjectCircle {
+    border-radius: 50%;
+    border: 1.5px solid black;
+    padding: 0 2%;
+    font-size: 19px;
+    margin: 0;
+}
+.projectTitleContainer {
+    display: -webkit-box;
+}
+.imageCarousel {
+    width: 100%;
+}
+.slick-prev, .slick-next {
+    display: none !important;
 }
