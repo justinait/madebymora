@@ -1,0 +1,91 @@
+.titlesBoxHero {
+    margin: 30px;
+}
+.titleMora{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+.subtitleMora{
+    font-size: 15px;
+    text-align: center;
+    margin: 0;
+}
+.categoryBox {
+    display: flex;
+    justify-content: flex-end;
+    width: 57%;
+    flex-wrap: wrap;
+    text-align: right;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+.categoryItem {
+    padding: 2px 8px;
+    margin: 0;
+    font-size: 12px;
+}
+/* .heroProjectsImage {
+    width: 300px;
+}
+
+.heroProjectsBox {
+    
+    position: relative;
+    width: 100%;
+    height: 100%;
+    height: 1000px;
+}
+
+.image-wrapper {
+    position: absolute;
+}
+
+.image-left {
+    top: calc(50% - 100px);
+    left: 0;
+}
+  
+.image-right {
+    top: calc(50% - 100px);
+    right: 0;
+}
+  
+.image-left-variant {
+    top: calc(50% - 100px);
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+.container {
+    width: 100%;
+  }
+  
+  .image-wrapper {
+    margin-bottom: -70px;
+    width: 200px; /* Ajusta el tamaño según tus necesidades */
+    height: 200px; /* Ajusta el tamaño según tus necesidades */
+    border: 1px dashed blue;
+  }
+  
+  .heroProjectsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .image-left {
+    margin-left: 0;
+  }
+  
+  .image-right {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  
+  .image-left-variant {
+    margin-left: 50px;
+  }
+  

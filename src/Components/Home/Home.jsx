@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Home.css'
+import HeroProjects from '../HeroProjects/HeroProjects';
 
 function Home() {
   
@@ -16,23 +17,10 @@ function Home() {
   
     });
   }, []);
+
   return (
     <div>
-      <p>About</p>
-
-      <div>
-        <h1 className='titleMora'>madebymora ©projects</h1>
-        <p className='subtitleMora'>Integral & Multidisciplinary Designer</p>
-      </div>
-
-      <div className='categoryBox'>
-        <p className='categoryItem'>All</p>
-        <p className='categoryItem'>Graphic</p>
-        <p className='categoryItem'>Audiovisual</p>
-        <p className='categoryItem'>UX&UI</p>
-        <p className='categoryItem'>3D</p>
-      </div>
-
+      < HeroProjects />
       <div className='allProjectsBox'>
         {
         projects.map(e=> {
