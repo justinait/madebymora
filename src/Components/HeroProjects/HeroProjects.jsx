@@ -49,7 +49,7 @@ function HeroProjects() {
       </div>
 
       <div className='optionsHeroProjects'>
-        <Link to='about' className='aboutLink' >About</Link>
+        <Link to='/about' className='aboutLink' >About</Link>
 
         <div className='categoryBox'>
           <p className='categoryItem'>All</p>
