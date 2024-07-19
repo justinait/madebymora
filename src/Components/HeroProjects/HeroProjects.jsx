@@ -4,48 +4,46 @@ import './HeroProjects.css'
 
 function HeroProjects() {
     
-    const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState([])
 
-    useEffect(() => {
-        
-      fetch('/data.json')
+  useEffect(() => {
+    fetch('/data.json')
       .then((response) => response.json())
       .then((responseData) => {
-        setProjects(responseData.projects);
+        const shuffledProjects = responseData.projects.sort(() => Math.random() - 0.5);
+        setProjects(shuffledProjects);
       });
-    }, []);
-    const getClassName = (index) => {
-        switch (index % 3) {
-          case 0:
-            return 'image-left';
-          case 1:
-            return 'image-right';
-          case 2:
-            return 'image-left-variant';
-          default:
-            return '';
-        }
-    };
+  }, []);
 
-    return (
+  return (
     <div>
         
-
       <div className='titlesBoxHero'>
         <h1 className='titleMora'>madebymora ©projects</h1>
         <p className='subtitleMora'>Integral & Multidisciplinary Designer</p>
       </div>
+      <div className='heroProjectsContainer'>
 
-      <div className='heroProjectsBox'>
-        {
-        projects.map((e, index)=> {
-          return (
-            <div className={`image-wrapper ${getClassName(index)}`}>
-              <img src={e.image} alt={e.name} className='heroProjectsImage' />
-            </div>  
-          )
-        })
-        }
+        <div className='heroProjectsBox'>
+          {
+          projects.map((e, index)=> {
+            return (
+              <div
+              key={index}
+              className="image-wrapper"
+              style={{
+                '--x': `${Math.random() * 90 }%`,
+                '--y': `${Math.random() * 90 }%`,
+                '--scale': 0.6 + Math.random() * 0.3,
+                '--index': index,
+              }}
+            >
+              <img src={e.image} alt={e.name} className="heroProjectsImage" />
+            </div>
+            )
+          })
+          }
+        </div>
       </div>
 
       <div className='optionsHeroProjects'>
