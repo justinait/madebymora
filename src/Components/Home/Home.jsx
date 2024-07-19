@@ -31,7 +31,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className='homeContainer'>
       < HeroProjects />
       <div className='allProjectsBox'>
         {
