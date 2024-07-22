@@ -21,6 +21,9 @@
     margin: 0;
     font-size: 12px;
 }
+.categoryItemActive {
+    font-weight: 600;
+}
 .optionsHeroProjects {
     color: white;
     display: flex;

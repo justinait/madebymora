@@ -34,7 +34,7 @@ function Home() {
   }, []);
 
   return (
-    <div className='homeContainer'>
+    <div  className={`homeContainer heroProjectsWrapper category-${selectedCategory.toLowerCase()}`}>
       < HeroProjects  onCategoryChange={handleCategoryChange}/>
       <div className='allProjectsBox'>
         {

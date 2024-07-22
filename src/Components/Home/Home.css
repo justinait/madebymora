@@ -12,6 +12,52 @@
     background-repeat: no-repeat;
     overflow: hidden;
 }
+.heroProjectsWrapper {
+    width: 95%;
+    padding: 2.5%;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-size: 100% 100%, 100% 200%;
+    background-position: center, 0 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.category-all {
+    background: 
+        radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #4169E1 0%, #000080 100%);
+}
+
+.category-graphic {
+    background: 
+        radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #FFB6C1 0%, #FF69B4 100%);
+}
+
+.category-audiovisual {
+    background: 
+        radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #7FFFD4 0%, #00CED1 100%);
+}
+
+.category-ux\&ui {
+    background: 
+        radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #DDA0DD 0%, #8A2BE2 100%);
+}
+
+.category-photos {
+    background: 
+        radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #D3D3D3 0%, #808080 100%);
+}
+
+.category-3d {
+    background: 
+        radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #FFFF00 0%, #FFD700 100%);
+}
 .projectTitle {
     font-size: 35px;
     text-align: center;

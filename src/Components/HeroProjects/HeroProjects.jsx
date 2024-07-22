@@ -33,6 +33,7 @@ function HeroProjects({ onCategoryChange }) {
         <div className='heroProjectsBox'>
           {
           projects
+          .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
           .map((e, index)=> {
             return (
               <div
