@@ -6,7 +6,7 @@ function HeroProjects({ onCategoryChange }) {
     
   const [projects, setProjects] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = [     'All' , 'Graphic', 'Audiovisual', 'UX&UI', 'PHOTOS', '3D']
+  const categories = [     'All' , 'Graphic', 'Audiovisual', 'UX&UI', 'Photos', '3D']
   
   useEffect(() => {
     fetch('/data.json')
