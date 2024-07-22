@@ -2,19 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './HeroProjects.css'
 
-function HeroProjects() {
+function HeroProjects({ onCategoryChange }) {
     
   const [projects, setProjects] = useState([])
-
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const categories = [     'All' , 'Graphic', 'Audiovisual', 'UX&UI', 'PHOTOS', '3D']
+  
   useEffect(() => {
     fetch('/data.json')
-      .then((response) => response.json())
-      .then((responseData) => {
-        const shuffledProjects = responseData.projects.sort(() => Math.random() - 0.5);
-        setProjects(shuffledProjects);
-      });
+    .then((response) => response.json())
+    .then((responseData) => {
+      const shuffledProjects = responseData.projects.sort(() => Math.random() - 0.5);
+      setProjects(shuffledProjects);
+    });
   }, []);
-
+  
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    onCategoryChange(category);
+  }
   return (
     <div>
         
@@ -26,7 +32,8 @@ function HeroProjects() {
 
         <div className='heroProjectsBox'>
           {
-          projects.map((e, index)=> {
+          projects
+          .map((e, index)=> {
             return (
               <div
               key={index}
@@ -48,13 +55,18 @@ function HeroProjects() {
 
       <div className='optionsHeroProjects'>
         <Link to='/about' className='aboutLink' >About</Link>
-
-        <div className='categoryBox'>
-          <p className='categoryItem'>All</p>
-          <p className='categoryItem'>Graphic</p>
-          <p className='categoryItem'>Audiovisual</p>
-          <p className='categoryItem'>UX&UI</p>
-          <p className='categoryItem'>3D</p>
+        <div className='categoryBox' >
+          {categories
+          .map((e, i) => (
+            <p
+              key={i}
+              className={`categoryItem ${selectedCategory === e ? 'categoryItemActive' : ''}`}
+              onClick={() => handleCategoryClick(e)}
+            >
+              {e}
+            </p>
+            
+          ))}
         </div>
       </div>
     </div>

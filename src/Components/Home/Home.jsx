@@ -9,6 +9,7 @@ import Slider from 'react-slick';
 function Home() {
   
   const [projects, setProjects] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('All')
 
   const settings = {
     infinite: true,
@@ -20,9 +21,11 @@ function Home() {
     pauseOnHover: true
   };
   
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
 
   useEffect(() => {
-      
     fetch('/data.json')
     .then((response) => response.json())
     .then((responseData) => {
@@ -32,10 +35,12 @@ function Home() {
 
   return (
     <div className='homeContainer'>
-      < HeroProjects />
+      < HeroProjects  onCategoryChange={handleCategoryChange}/>
       <div className='allProjectsBox'>
         {
-        projects.map((e, i)=> {
+        projects
+        .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
+        .map((e, i)=> {
           return (
             <div key={i}>
               <div className='separatorLine'></div>
