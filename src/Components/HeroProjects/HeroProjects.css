@@ -24,7 +24,7 @@
 .optionsHeroProjects {
     display: flex;
     justify-content: space-between;
-    margin: 100px 5px 20px;
+    margin: 0px 5px 20px;
     align-items: flex-end;
     text-transform: uppercase;
     line-height: 2.5;
