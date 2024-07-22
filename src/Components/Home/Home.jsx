@@ -33,6 +33,8 @@ function Home() {
     });
   }, []);
 
+  const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" ]
+
   return (
     <div  className={`homeContainer heroProjectsWrapper category-${selectedCategory.toLowerCase()}`}>
       < HeroProjects  onCategoryChange={handleCategoryChange}/>
@@ -44,7 +46,7 @@ function Home() {
           return (
             <div key={i}>
               <div className='separatorLine'></div>
-              <h2 className='projectTitle'> <strong className='cantProjectCircle'>{i+1}</strong>  {e.name}</h2>
+              <h2 className='projectTitle'> {numbers[i]} {e.name}</h2>
               <p className='projectDetail'>{e.detail}</p>
               <p className='projectDescription'>{e.description}</p>
               

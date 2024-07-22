@@ -12,16 +12,6 @@
     background-repeat: no-repeat;
     overflow: hidden;
 }
-.heroProjectsWrapper {
-    width: 95%;
-    padding: 2.5%;
-    min-height: 100vh;
-    background-attachment: fixed;
-    background-size: 100% 100%, 100% 200%;
-    background-position: center, 0 0;
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
 
 .category-graphic {
     background: 
@@ -52,10 +42,19 @@
         radial-gradient(circle at top, white 0%, rgba(255,255,255,0) 50%),
         linear-gradient(to bottom, #FFFF00 0%, #FFD700 100%);
 }
+.heroProjectsWrapper {
+    width: 95%;
+    padding: 2.5%;
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-size: 100% 100%, 100% 200%;
+    background-position: center, 0 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
 .projectTitle {
     font-size: 35px;
     text-align: center;
-    /* margin: 0; */
     font-weight: 100;
     line-height: 1;
 }
@@ -76,13 +75,6 @@
 .separatorLine {
     border-bottom: 1px solid black;
     margin: 5px;
-}
-.cantProjectCircle {
-    border-radius: 50%;
-    border: 1.5px solid black;
-    padding: 0 2%;
-    font-size: 19px;
-    margin: 0;
 }
 .projectTitleContainer {
     display: -webkit-box;
