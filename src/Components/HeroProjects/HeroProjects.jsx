@@ -21,6 +21,32 @@ function HeroProjects({ onCategoryChange }) {
     setSelectedCategory(category);
     onCategoryChange(category);
   }
+  const projectCounts = projects.reduce((acc, project) => {
+    project.brand.forEach(brand => {
+      if (!acc[brand]) {
+        acc[brand] = 0;
+      }
+      acc['All'] = (acc['All'] || 0) + 1;
+      acc[brand]++;
+    });
+    return acc;
+  }, {});
+  const toSuperscript = (num) => {
+    const superscriptMap = {
+      0: '⁰',
+      1: '¹',
+      2: '²',
+      3: '³',
+      4: '⁴',
+      5: '⁵',
+      6: '⁶',
+      7: '⁷',
+      8: '⁸',
+      9: '⁹'
+    };
+    return num.toString().split('').map(digit => superscriptMap[digit]).join('');
+  };
+
   return (
     <div>
         
@@ -64,7 +90,7 @@ function HeroProjects({ onCategoryChange }) {
               className={`categoryItem ${selectedCategory === e ? 'categoryItemActive' : ''}`}
               onClick={() => handleCategoryClick(e)}
             >
-              {e}
+              {e} {projectCounts[e] ? toSuperscript(projectCounts[e]) : ''}   
             </p>
             
           ))}
