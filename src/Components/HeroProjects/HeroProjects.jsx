@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './HeroProjects.css'
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function HeroProjects({ onCategoryChange }) {
     
@@ -42,11 +45,29 @@ function HeroProjects({ onCategoryChange }) {
       6: '⁶',
       7: '⁷',
       8: '⁸',
-      9: '⁹'
+      9: '⁹', 
+      10: '¹⁰',
     };
     return num.toString().split('').map(digit => superscriptMap[digit]).join('');
   };
-
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '0',
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: '40px',
+        }
+      }
+    ]
+  };
   return (
     <div>
         
@@ -56,28 +77,21 @@ function HeroProjects({ onCategoryChange }) {
       </div>
       <div className='heroProjectsContainer'>
 
-        <div className='heroProjectsBox'>
-          {
-          projects
-          .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
-          .map((e, index)=> {
-            return (
-              <div
-              key={index}
-              className="image-wrapper"
-              style={{
-                '--x': `${Math.random() * 90 }%`,
-                '--y': `${Math.random() * 90 }%`,
-                '--scale': 0.6 + Math.random() * 0.3,
-                '--index': index,
-              }}
-            >
-              <img src={e.image} alt={e.name} className="heroProjectsImage" />
-            </div>
-            )
-          })
-          }
-        </div>
+          <Slider {...settings}>
+            {projects
+              .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
+              .map((project, index) => (
+                <div key={index} className="heroProjectSlide">
+                  <div className="heroProjectInfo">
+                    <p>"{project.name}"</p>
+                    <p>{project.detail}</p>
+                  </div>
+                  <div className="slider-fade-container">
+                    <img src={project.image} alt={project.name} className="heroProjectsImage" />
+                  </div>
+                </div>
+            ))}
+          </Slider>
       </div>
 
       <div className='optionsHeroProjects'>
