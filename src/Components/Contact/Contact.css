@@ -1,0 +1,50 @@
+
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.blur-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+  
+.focusedElement {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    z-index: 11;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+}
+.blur-overlay.active ~ .focusedElement {
+    opacity: 1;
+}
+.linksContact {
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+}
+.linksContactSocial {
+    display: flex;
+    justify-content: space-between;
+    width: 75vw;
+}
+.linksContact a {
+    color: white;
+}
+.focusedElement h4 {
+    margin: 0;
+    line-height: 2;
+}

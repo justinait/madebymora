@@ -4,10 +4,12 @@ import './HeroProjects.css'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Contact from '../Contact/Contact';
 
 function HeroProjects({ onCategoryChange }) {
     
   const [projects, setProjects] = useState([])
+  const [isBlurred, setIsBlurred] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All');
   const categories = [     'All' , 'Graphic', 'Audiovisual', 'UX&UI', 'Photos', '3D']
   
@@ -24,6 +26,7 @@ function HeroProjects({ onCategoryChange }) {
     setSelectedCategory(category);
     onCategoryChange(category);
   }
+
   const projectCounts = projects.reduce((acc, project) => {
     project.brand.forEach(brand => {
       if (!acc[brand]) {
@@ -34,6 +37,7 @@ function HeroProjects({ onCategoryChange }) {
     });
     return acc;
   }, {});
+
   const toSuperscript = (num) => {
     const superscriptMap = {
       0: '⁰',
@@ -49,6 +53,17 @@ function HeroProjects({ onCategoryChange }) {
       10: '¹⁰',
     };
     return num.toString().split('').map(digit => superscriptMap[digit]).join('');
+  };
+
+  
+  const toggleBlur = () => {
+    setIsBlurred(!isBlurred);
+  };
+  const handleClose = (e) => {
+    // Cierra el blur solo si el clic fue directamente en el overlay
+    if (e.target.className.includes('blur-overlay')) {
+      setIsBlurred(false);
+    }
   };
   const settings = {
     dots: false,
@@ -89,32 +104,39 @@ function HeroProjects({ onCategoryChange }) {
   };
   return (
     <div>
-        
+      
+      <Contact isActive={isBlurred} onClose={handleClose} />
+
       <div className='titlesBoxHero'>
         <h1 className='titleMora'>madebymora ©projects</h1>
         <p className='subtitleMora'>Integral & Multidisciplinary Designer</p>
       </div>
+
       <div className='heroProjectsContainer'>
 
-          <Slider {...settings}>
-            {projects
-              .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
-              .map((project, index) => (
-                <div key={index} className="heroProjectSlide">
-                  <div className="heroProjectInfo">
-                    <p>"{project.name}"</p>
-                    <p>{project.detail2}</p>
-                  </div>
-                  <div className="slider-fade-container">
-                    <img src={project.image} alt={project.name} className="heroProjectsImage" />
-                  </div>
+        <Slider {...settings}>
+          {projects
+            .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
+            .map((project, index) => (
+              <div key={index} className="heroProjectSlide">
+                <div className="heroProjectInfo">
+                  <p>"{project.name}"</p>
+                  <p>{project.detail2}</p>
                 </div>
-            ))}
-          </Slider>
+                <div className="slider-fade-container">
+                  <img src={project.image} alt={project.name} className="heroProjectsImage" />
+                </div>
+              </div>
+          ))}
+        </Slider>
       </div>
 
       <div className='optionsHeroProjects'>
-        <Link to='/about' className='aboutLink' >About</Link>
+        <div className='heroLinks'>
+          <Link to='/about' className='aboutLink' >About</Link>
+          <p className='aboutLink' onClick={toggleBlur}>Contact</p>
+        </div>
+
         <div className='categoryBox' >
           {categories
           .map((e, i) => (
