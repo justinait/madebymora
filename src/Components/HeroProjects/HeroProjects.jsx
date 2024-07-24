@@ -54,11 +54,30 @@ function HeroProjects({ onCategoryChange }) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '0',
     responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 4,
+          centerPadding: '40px',
+        }
+      },
+      {
+        breakpoint: 1300,
+        settings: {
+          centerPadding: '60px',
+        }
+      },
+      {
+        breakpoint: 1150,
+        settings: {
+          slidesToShow: 3
+        }
+      },
       {
         breakpoint: 768,
         settings: {
@@ -84,7 +103,7 @@ function HeroProjects({ onCategoryChange }) {
                 <div key={index} className="heroProjectSlide">
                   <div className="heroProjectInfo">
                     <p>"{project.name}"</p>
-                    <p>{project.detail}</p>
+                    <p>{project.detail2}</p>
                   </div>
                   <div className="slider-fade-container">
                     <img src={project.image} alt={project.name} className="heroProjectsImage" />
