@@ -1,6 +1,7 @@
 import React from 'react'
 import './About.css'
 import { Link } from 'react-router-dom'
+import mora from '/public/images/Perfil.jpg'
 
 function About() {
   return (
@@ -56,7 +57,7 @@ function About() {
         </div>
       </div>
 
-      <img className='cvAboutImg' src="" alt="" />
+      <img className='cvAboutImg' src={mora} alt="" />
     </div>
   )
 }
