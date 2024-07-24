@@ -6,7 +6,6 @@
 .titlesContainerAbout {
     margin: 40px 0;
     line-height: 1.5;
-    text-align: center;
 }
 .titlesContainerAbout .subtitleMora {
     text-transform: uppercase;
@@ -49,7 +48,6 @@
     flex-direction: column;
     font-size: 12px;
     line-height: 1.5;
-    text-decoration: underline !important;
 }
 .skillsAboutDiv .skills, .skillsAboutDiv .linksAbout  {
     width: 80%;
