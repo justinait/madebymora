@@ -60,7 +60,6 @@ function HeroProjects({ onCategoryChange }) {
     setIsBlurred(!isBlurred);
   };
   const handleClose = (e) => {
-    // Cierra el blur solo si el clic fue directamente en el overlay
     if (e.target.className.includes('blur-overlay')) {
       setIsBlurred(false);
     }
@@ -71,8 +70,8 @@ function HeroProjects({ onCategoryChange }) {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
+    // centerPadding: '50px',
     centerMode: true,
-    centerPadding: '0',
     responsive: [
       {
         breakpoint: 1400,
@@ -96,8 +95,9 @@ function HeroProjects({ onCategoryChange }) {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
-          centerPadding: '40px',
+          slidesToShow: 2,
+          centerMode: true,
+          // centerPadding: '40px',
         }
       }
     ]
