@@ -77,7 +77,6 @@
     width: 280px;
     font-size: 12px;
     font-weight: 900;
-
 }
 .heroProjectInfo p {
     margin: 0.5em 0;
@@ -93,14 +92,18 @@
     transform: scale(0.8);
 }
 .slick-slide:not(.slick-center) .heroProjectsImage {
-    height: 400px;
+    padding-top: 30%;
+    height: 350px;
+}
+.slick-slide:not(.slick-center) .heroProjectInfo {
+   display: none;
 }
 .slick-center .project-slide {
     transform: scale(1);
 }
 
 .slick-center .heroProjectsImage {
-    height: 500px;
+    height: 430px;
 }
 .slick-prev, .slick-next {
     z-index: 1;
