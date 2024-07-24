@@ -26,10 +26,10 @@
     color: white;
     text-transform: uppercase;
     text-align: center;
-    opacity: 0;
+    display: none;
 }
 .blur-overlay.active ~ .focusedElement {
-    opacity: 1;
+    display: block;
     position: fixed;
 }
 .linksContact {
