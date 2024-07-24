@@ -30,6 +30,7 @@
 }
 .blur-overlay.active ~ .focusedElement {
     opacity: 1;
+    position: fixed;
 }
 .linksContact {
     display: flex;
