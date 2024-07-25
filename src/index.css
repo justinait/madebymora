@@ -2,6 +2,10 @@
     font-family: monumentGrotesk;
     src: url('/MonumentGrotesk-Mono.woff');
 }
+@font-face {
+    font-family: monumentGroteskBold;
+    src: url('/MonumentGrotesk-Bold.woff');
+}
 body {
     font-family: monumentGrotesk;
     line-height: 1.2;

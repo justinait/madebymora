@@ -4,7 +4,7 @@
     margin: 0;
 }
 .titlesContainerAbout {
-    margin: 40px 0;
+    margin: 10px 0 40px;
     line-height: 1.5;
 }
 .titlesContainerAbout .subtitleMora {
@@ -24,11 +24,10 @@
     padding-top: 50px;
 }
 .skillsAboutDiv h6 {
-    /* margin: 0 1em 0 0; */
     margin: 0;
     width: 70px;
     line-height: 1.5;
-
+    font-family: monumentGroteskBold;
 }
 .aboutContainer {
     padding: 0 10px;
