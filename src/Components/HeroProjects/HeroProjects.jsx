@@ -11,7 +11,7 @@ function HeroProjects({ onCategoryChange }) {
   const [projects, setProjects] = useState([])
   const [isBlurred, setIsBlurred] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = [     'All' , 'Graphic', 'Audiovisual', 'UX&UI', 'Photos', '3D']
+  const categories = [     'All' , 'Graphic', 'Audiovisual', 'Photos', '3D']
   
   useEffect(() => {
     fetch('/data.json')

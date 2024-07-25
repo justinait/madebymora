@@ -12,7 +12,7 @@
     font-size: 13.5px;
 }
 .titlesContainerAbout .titleMora {
-    font-size: 25.5px;
+    font-size: 22.5px;
 }
 
 .skillsAboutDiv {
@@ -26,8 +26,10 @@
 .skillsAboutDiv h6 {
     margin: 0;
     width: 70px;
+    font-size: 12px;
     line-height: 1.5;
     font-family: monumentGroteskBold;
+    letter-spacing: normal;
 }
 .aboutContainer {
     padding: 0 10px;
@@ -54,7 +56,12 @@
 .cvAboutImg {
     width: 100%;
     padding-top: 50px;
-    padding-bottom: 250px;
+    padding-bottom: 50px;
     object-fit: cover;
     height: 350px;
+}
+.justwebs {
+    text-transform: uppercase;
+    font-size: 10px;
+    text-align: center;
 }

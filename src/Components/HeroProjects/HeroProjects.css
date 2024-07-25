@@ -1,15 +1,18 @@
 .titlesBoxHero {
     margin: 50px 0;
     text-align: center;
+    line-height: 1.5;
 }
 .titleMora{
-    font-size: 24px;
+    font-size: 22.5px;
     font-weight: 600;
     margin: 0;
     font-family: monumentGroteskBold;
+    letter-spacing: normal;
 }
 .subtitleMora{
     font-size: 15px;
+    text-transform: uppercase;
     margin: 0;
 }
 .categoryBox {

@@ -58,6 +58,8 @@ function About() {
       </div>
 
       <img className='cvAboutImg' src={mora} alt="" />
+
+      <p className='justwebs'>Developed by <a target='_blank' href="https://www.imjustwebs.com/">I'm Just Webs</a></p>
     </div>
   )
 }
