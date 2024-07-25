@@ -92,9 +92,6 @@
     width: 309px !important;
 }
 .slick-slide:not(.slick-center) .heroProjectsImage {
-    /* padding-top: 30%;
-    height: 350px; */
-    
     padding-top: 17%;
     height: 400px;
     width: 390px;
@@ -103,7 +100,7 @@
    display: none;
 }
 .slick-active {
-    width: 300px !important;
+    /* width: 300px !important; */
 }
 .slick-center .heroProjectSlide {
     transform: scale(1);
@@ -115,7 +112,7 @@
 }
 .slick-center .heroProjectsImage {
     height: 430px !important;
-    /* width: 300px; */
+    width: 285px;
 }
 .slick-prev, .slick-next {
     z-index: 1;
