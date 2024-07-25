@@ -87,7 +87,7 @@
     justify-content: space-between;
 }
 .slick-track  {
-    height: 80vh;
+    height: 55vh;
 }
 .slick-slide:not(.slick-center) .heroProjectSlide {
     transform: scale(0.8);
