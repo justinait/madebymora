@@ -12,6 +12,11 @@ function HeroProjects({ onCategoryChange }) {
   const [isBlurred, setIsBlurred] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All');
   const categories = [     'All' , 'Graphic', 'Audiovisual', 'Photos', '3D']
+
+  const extraProjects = [
+    {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY"   },
+    {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY"       }
+  ]
   
   useEffect(() => {
     fetch('/data.json')
@@ -116,6 +121,7 @@ function HeroProjects({ onCategoryChange }) {
 
         <Slider {...settings}>
           {projects
+            .filter(e => e.name !== 'PHOTOGRAPHY')
             .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
             .map((project, index) => (
               <div key={index} className="heroProjectSlide">
@@ -128,6 +134,23 @@ function HeroProjects({ onCategoryChange }) {
                 </div>
               </div>
           ))}
+          {
+            extraProjects
+              .filter(e => selectedCategory === 'All' || selectedCategory === 'Photos' || (e.brand && e.brand.some(brand => brand === selectedCategory))) // Segundo filtro
+              .map((e, index)=> {
+              return (
+                <div key={index} className="heroProjectSlide">
+                <div className="heroProjectInfo">
+                  <p>"{e.name}"</p>
+                  <p>{e.detail2}</p>
+                </div>
+                <div className="slider-fade-container">
+                  <img src={e.image} alt={e.name} className="heroProjectsImage" />
+                </div>
+              </div>
+              )
+            })
+          }
         </Slider>
       </div>
 
