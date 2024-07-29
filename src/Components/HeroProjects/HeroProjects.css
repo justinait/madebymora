@@ -17,8 +17,6 @@
 }
 .categoryBox {
     display: flex;
-    /* align-items: flex-end;    
-    flex-direction: row; */
 }
 
 .categoryItem::-webkit-scrollbar, .heroLinks::-webkit-scrollbar {
@@ -190,4 +188,16 @@
 .slick-active:nth-child(4) .project-slide {
   transform: scale(0.9);
   opacity: 0.9;
+}
+
+@media(min-width:700px){
+    .titlesBoxHero {
+        margin: 50px 0;
+    }
+    .titleMora{
+        font-size: 28px;
+    }
+    .subtitleMora{
+        font-size: 18px;
+    }
 }
