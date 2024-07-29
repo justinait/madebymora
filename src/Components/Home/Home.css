@@ -84,3 +84,7 @@
 .carouselContainer {
     margin: 2em 5px;
 }
+.carouselContainer .slick-initialized .slick-slide {
+    display: flex !important;
+    align-items: center !important;
+}
