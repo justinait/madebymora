@@ -117,13 +117,20 @@
 }
 .slick-slide:not(.slick-center) .heroProjectSlide {
     transform: scale(0.8);
-    width: 350px !important;
-    width: 309px !important;
+    /* width: 350px !important;
+    width: 309px !important; */
+    width: 72vw !important;
 }
 .slick-slide:not(.slick-center) .heroProjectsImage {
     margin-top: 20%;
     height: 450px;
     width: 390px;
+    width: 100%;
+    width: 105%;
+}
+.slick-center + .slick-slide .heroProjectsImage {
+    position: relative;
+    left: -5vw;
 }
 .slick-slide:not(.slick-center) .heroProjectInfo {
    display: none;
