@@ -107,6 +107,7 @@ function HeroProjects({ onCategoryChange }) {
       }
     ]
   };
+
   return (
     <div>
       
