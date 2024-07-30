@@ -24,7 +24,7 @@ function HeroProjects({ onCategoryChange }) {
     //   setActiveIndex((current) => (current + 1) % filteredProjects.length);
     // }, 3000);
   
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [filteredProjects.length]);
   
   useEffect(() => {
