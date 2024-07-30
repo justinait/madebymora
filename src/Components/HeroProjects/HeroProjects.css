@@ -118,8 +118,7 @@
 }
 .heroProjectsImage {
     width: 100%;
-    height: 440px;
-    height: 60vh;
+    height: 55vh;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -141,12 +140,12 @@
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     overflow: hidden;
 }
 .carousel {
     position: relative;
-    height: 60vh;
+    height: 70vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -155,8 +154,7 @@
   
 .carousel-item {
     position: absolute;
-    width: 300px;
-    /* height: 60vh; */
+    width: 70vw;
     transition: all 0.5s ease;
 }
 

@@ -20,9 +20,9 @@ function HeroProjects({ onCategoryChange }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % filteredProjects.length);
-    }, 3000);
+    // const interval = setInterval(() => {
+    //   setActiveIndex((current) => (current + 1) % filteredProjects.length);
+    // }, 3000);
   
     return () => clearInterval(interval);
   }, [filteredProjects.length]);
