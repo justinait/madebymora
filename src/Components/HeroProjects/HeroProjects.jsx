@@ -9,7 +9,7 @@ function HeroProjects({ onCategoryChange }) {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [isBlurred, setIsBlurred] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = [     'All' , 'Graphic', 'Audiovisual', 'Photos', '3D']
+  const categories = [     'All' , 'Graphic', 'Audiovisual', '3D', 'Photos']
   const containerRef = useRef(null);
   const extraProjects = [
     {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]   },
