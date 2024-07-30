@@ -9,6 +9,8 @@ function HeroProjects({ onCategoryChange }) {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [isBlurred, setIsBlurred] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
   const categories = [     'All' , 'Graphic', 'Audiovisual', '3D', 'Photos']
   const containerRef = useRef(null);
   const extraProjects = [
@@ -29,10 +31,8 @@ function HeroProjects({ onCategoryChange }) {
     const filtered = projects
       .filter(e => e.name !== 'PHOTOGRAPHY')
       .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)));
-    
     const filteredExtra = extraProjects
       .filter(e => selectedCategory === 'All' || selectedCategory === 'Photos');
-  
     setFilteredProjects([...filtered, ...filteredExtra]);
   }, [projects, selectedCategory]);
 
@@ -84,7 +84,32 @@ function HeroProjects({ onCategoryChange }) {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   };
-
+  const handleDragStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
+  };
+  
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    
+    const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const diff = startX - currentX;
+  
+    if (Math.abs(diff) > 50) {
+      moveCarousel(diff > 0 ? 1 : -1);
+      setIsDragging(false);
+    }
+  };
+  
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
+  
+  const moveCarousel = (direction) => {
+    setActiveIndex((current) => 
+      (current + direction + filteredProjects.length) % filteredProjects.length
+    );
+  };
 
 
   useEffect(() => {
@@ -158,7 +183,15 @@ function HeroProjects({ onCategoryChange }) {
       </div>
 
       <div className="carousel-container">
-        <div className="carousel" onMouseDown={handleMouseDown}>
+        <div
+        className="carousel" 
+        onMouseDown={handleDragStart}
+        onMouseMove={handleDragMove}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={handleDragEnd}
+        onTouchStart={handleDragStart}
+        onTouchMove={handleDragMove}
+        onTouchEnd={handleDragEnd}>
           {filteredProjects
             .map((project, index) => (
               <div 
