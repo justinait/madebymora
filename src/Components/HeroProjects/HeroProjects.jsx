@@ -6,93 +6,87 @@ import Contact from '../Contact/Contact';
 function HeroProjects({ onCategoryChange }) {
     
   const [projects, setProjects] = useState([])
+  const [filteredProjects, setFilteredProjects] = useState([]);
   const [isBlurred, setIsBlurred] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('All');
   const categories = [     'All' , 'Graphic', 'Audiovisual', 'Photos', '3D']
   const containerRef = useRef(null);
   const extraProjects = [
-    {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY"   },
-    {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY"       }
+    {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]   },
+    {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]       }
   ]
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const slides = document.querySelectorAll('.heroProjectSlide');
-      if (slides.length > 0) {
-        setCurrentIndex((prevIndex) => {
-          const newIndex = (prevIndex + 1) % slides.length;
-          updateSlideClasses(newIndex);
-          return newIndex;
-        });
-      }
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % filteredProjects.length);
     }, 3000);
+  
+    return () => clearInterval(interval);
+  }, [filteredProjects.length]);
+  
+  useEffect(() => {
+    const filtered = projects
+      .filter(e => e.name !== 'PHOTOGRAPHY')
+      .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)));
+    
+    const filteredExtra = extraProjects
+      .filter(e => selectedCategory === 'All' || selectedCategory === 'Photos');
+  
+    setFilteredProjects([...filtered, ...filteredExtra]);
+  }, [projects, selectedCategory]);
 
-    return () => clearInterval(intervalId);
-  }, [projects.length]);
+  const getItemStyle = (index) => {
+    const diff = (index - activeIndex + filteredProjects.length) % filteredProjects.length;
+    let translateX = 0;
+    let scale = 0.8;
+    let zIndex = 0;
 
-  const updateSlideClasses = (newIndex) => {
-    const slides = document.querySelectorAll('.heroProjectSlide');
-    slides.forEach((slide, index) => {
-      slide.classList.remove('prev', 'next', 'active');
-      if (index === newIndex) {
-        slide.classList.add('active');
-      } else if (index === (newIndex - 1 + slides.length) % slides.length) {
-        slide.classList.add('prev');
-      } else if (index === (newIndex + 1) % slides.length) {
-        slide.classList.add('next');
-      }
-    });
-
-    const container = containerRef.current;
-    if (container) {
-      const slideWidth = slides[0].clientWidth;
-      container.style.transform = `translateX(-${slideWidth * newIndex}px)`;
+    if (diff === 0) {
+      scale = 1;
+      zIndex = 2;
+    } else if (diff === 1 || diff === projects.length - 1) {
+      translateX = diff === 1 ? 100 : -100;
+      zIndex = 1;
+    } else {
+      translateX = diff === 2 ? 200 : -200;
     }
+
+    return {
+      transform: `translateX(${translateX}%) scale(${scale})`,
+      zIndex,
+    };
   };
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     const container = document.querySelector('.projectsScrollable');
-  //     const slides = document.querySelectorAll('.heroProjectSlide');
-  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  //     if (container && slides.length > 0) {
-  //       const slideWidth = slides[0].clientWidth;
-  //       const currentTransform = container.style.transform || 'translateX(0%)';
-  //       const newTransform = currentTransform === 'translateX(0%)' ? `translateX(-${slideWidth}px)` : 'translateX(0%)';
-  //       container.style.transform = newTransform;
+
+  const handleMouseDown = (e) => {
+    const startX = e.pageX;
+    const handleMouseMove = (e) => {
+      const diff = startX - e.pageX;
+      if (Math.abs(diff) > 50) {
+        setActiveIndex((current) => 
+          (current + (diff > 0 ? 1 : -1) + filteredProjects.length) % filteredProjects.length
+        );
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      }
+    };
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
 
 
-  //       if (currentTransform === 'translateX(0%)') {
-  //         newTransform = `translateX(-${slideWidth}px)`;
-  //         newIndex = 1;
-  //       } else {
-  //         newTransform = 'translateX(0%)';
-  //         newIndex = 0;
-  //       }
-
-  //       container.style.transform = newTransform;
-
-  //       slides.forEach((slide, index) => {
-  //         slide.classList.remove('prev', 'next', 'active');
-  //         if (index === newIndex) {
-  //           slide.classList.add('active');
-  //         } else if (index === (newIndex - 1 + slides.length) % slides.length) {
-  //           slide.classList.add('prev');
-  //         } else if (index === (newIndex + 1) % slides.length) {
-  //           slide.classList.add('next');
-  //         }
-  //       });
-  //     }
-  //   }, 3000); // Cambia la slide cada 3 segundos
-
-  //   return () => clearInterval(intervalId); // Limpia el intervalo cuando el componente se desmonte
-  // }, [projects.length]);
 
   useEffect(() => {
     fetch('/data.json')
     .then((response) => response.json())
     .then((responseData) => {
       const shuffledProjects = responseData.projects.sort(() => Math.random() - 0.5);
-      setProjects(shuffledProjects);
+      const allProjects = [...shuffledProjects, ...extraProjects];
+      setProjects(allProjects);
     });
   }, []);
   
@@ -102,13 +96,20 @@ function HeroProjects({ onCategoryChange }) {
   }
 
   const projectCounts = projects.reduce((acc, project) => {
-    project.brand.forEach(brand => {
-      if (!acc[brand]) {
-        acc[brand] = 0;
+    if (project.brand) {
+      project.brand.forEach(brand => {
+        if (!acc[brand]) {
+          acc[brand] = 0;
+        }
+        acc[brand]++;
+      });
+    } else if (project.detail2 === "PHOTOGRAPHY") {
+      if (!acc["Photos"]) {
+        acc["Photos"] = 0;
       }
-      acc['All'] = (acc['All'] || 0) + 1;
-      acc[brand]++;
-    });
+      acc["Photos"]++;
+    }
+    acc['All'] = (acc['All'] || 0) + 1;
     return acc;
   }, {});
 
@@ -149,40 +150,26 @@ function HeroProjects({ onCategoryChange }) {
         <p className='subtitleMora'>Integral & Multidisciplinary Designer</p>
       </div>
 
-      <div className='heroProjectsContainer'>
-      <div className='projectsScrollable'>
-        {projects
-          .filter(e => e.name !== 'PHOTOGRAPHY')
-          .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
-          .map((project, index) => (
-            <div 
-              key={index} 
-              className={`heroProjectSlide ${index === currentIndex ? 'active' : index === currentIndex - 1 ? 'prev' : index === currentIndex + 1 ? 'next' : ''}`}
-              // className="heroProjectSlide"
+      <div className="carousel-container">
+        <div className="carousel" onMouseDown={handleMouseDown}>
+          {filteredProjects
+            .map((project, index) => (
+              <div 
+                key={index} 
+                className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
+                style={getItemStyle(index)}
               >
-              <div className="heroProjectInfo">
-                <p>"{project.name}"</p>
-                <p>{project.detail2}</p>
+                <div className="heroProjectInfo">
+                  <p>"{project.name}"</p>
+                  <p>{project.detail2}</p>
+                </div>
+                <div className="slider-fade-container">
+                  <img src={project.image} alt={project.name} className="heroProjectsImage" />
+                </div>
               </div>
-              <div className="slider-fade-container">
-                <img src={project.image} alt={project.name} className="heroProjectsImage" />
-              </div>
-            </div>
-        ))}
-        {extraProjects
-          .filter(e => selectedCategory === 'All' || selectedCategory === 'Photos' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
-          .map((e, index)=> (
-            <div key={index} className="heroProjectSlide">
-              <div className="heroProjectInfo">
-                <p>"{e.name}"</p>
-                <p>{e.detail2}</p>
-              </div>
-              <div className="slider-fade-container">
-                <img src={e.image} alt={e.name} className="heroProjectsImage" />
-              </div>
-            </div>
           ))}
-      </div>
+          
+        </div>
     </div>
 
 
