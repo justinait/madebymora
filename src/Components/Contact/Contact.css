@@ -1,4 +1,6 @@
-
+.contactContainer {
+    font-size: 14px;
+}
 .blur-overlay {
     position: fixed;
     top: 0;

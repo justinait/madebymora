@@ -3,7 +3,7 @@ import './Contact.css'
 
 function Contact({ isActive, onClose }) {
   return (
-    <div>
+    <div className='contactContainer'>
         <div 
             className={`blur-overlay ${isActive ? 'active' : ''}`} 
             onClick={onClose}

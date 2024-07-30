@@ -37,15 +37,13 @@
         linear-gradient(to bottom, #FFFF00 0%, #fff117 100%);
 }
 .category-3d .optionsHeroProjects,
-.category-3d .aboutLink 
+.category-3d .aboutLink, 
 .category-photos .optionsHeroProjects,
-.category-photos .aboutLink 
-
- {
+.category-photos .aboutLink {
     color: black;
 }
 .category-3d .categoryItem, 
-.category-3d .aboutLink
+.category-3d .aboutLink,
 .category-photos .categoryItem, 
 .category-photos .aboutLink {
     border: 1px solid rgba(26, 26, 26, 0.3);
