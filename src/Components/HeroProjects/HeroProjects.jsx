@@ -39,12 +39,16 @@ function HeroProjects({ onCategoryChange }) {
   const getItemStyle = (index) => {
     const diff = (index - activeIndex + filteredProjects.length) % filteredProjects.length;
     let translateX = 0;
-    let scale = 0.8;
+    let scale = 0.7;
+    let height = '40vh';
     let zIndex = 0;
+    let marginBottom = '30%'
 
     if (diff === 0) {
       scale = 1;
       zIndex = 2;
+      height = '60vh';
+      marginBottom = '0%'
     } else if (diff === 1 || diff === projects.length - 1) {
       translateX = diff === 1 ? 100 : -100;
       zIndex = 1;
@@ -55,6 +59,9 @@ function HeroProjects({ onCategoryChange }) {
     return {
       transform: `translateX(${translateX}%) scale(${scale})`,
       zIndex,
+      height,
+      marginBottom,
+      transition: 'all 0.5s ease',
     };
   };
 
