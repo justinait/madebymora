@@ -154,7 +154,7 @@
   
 .carousel-item {
     position: absolute;
-    width: 70vw;
+    width: 75vw;
     transition: all 0.5s ease;
 }
 
@@ -177,9 +177,9 @@
         font-size: 20px;
     }
     .heroProjectInfo {
-        font-size: 14px;
+        font-size: 15px;
     }
     .categoryItem, .aboutLink{
-        font-size: 14px;
+        font-size: 15px;
     }
 }
