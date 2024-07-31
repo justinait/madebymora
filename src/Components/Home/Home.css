@@ -98,3 +98,15 @@
     display: flex !important;
     align-items: center !important;
 }
+
+@media(min-width:700px){
+    .projectTitle {
+        font-size: 40px;
+    }
+    .projectDetail {
+        font-size: 18px;
+    }
+    .projectDescription {
+        font-size: 14px;
+    }
+}

@@ -171,9 +171,15 @@
         margin: 50px 0;
     }
     .titleMora{
-        font-size: 28px;
+        font-size: 30px;
     }
     .subtitleMora{
-        font-size: 18px;
+        font-size: 20px;
+    }
+    .heroProjectInfo {
+        font-size: 14px;
+    }
+    .categoryItem, .aboutLink{
+        font-size: 14px;
     }
 }
