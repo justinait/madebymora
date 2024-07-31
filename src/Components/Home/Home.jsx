@@ -46,7 +46,7 @@ function Home() {
           return (
             <div key={i}>
               <div className='separatorLine'></div>
-              <h2 className='projectTitle'> {numbers[i]} {e.name}</h2>
+              <h2 className='projectTitle'> {numbers[i]}{e.name}</h2>
               <p className='projectDetail'>{e.detail}</p>
               <p className='projectDescription'>{e.description}</p>
               

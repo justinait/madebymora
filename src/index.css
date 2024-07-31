@@ -6,6 +6,10 @@
     font-family: monumentGroteskBold;
     src: url('/MonumentGrotesk-Bold.woff');
 }
+@font-face {
+    font-family: monumentGroteskRegular;
+    src: url('/MonumentGrotesk-Regular.woff');
+}
 body {
     font-family: monumentGrotesk;
     letter-spacing: -0.03rem;
