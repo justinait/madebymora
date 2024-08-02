@@ -133,21 +133,25 @@
     position: absolute;
     transition: all 0.5s ease;
     width: 75vw;
-    transform: translateX(0) scale(0.7);
-    height: 40vh;
-    margin-bottom: 10%;
+    transform: translateX(0) scale(0.8);
     z-index: 0;
     opacity: 0;
+}
+.heroProjectsImage{
+    height: 40vh
 }
 
 .carousel-item.active {
     z-index: 2;
     transform: translateX(0) scale(1);
-    height: 60vh;
+    /* height: 60vh; */
     margin-bottom: 0;
     opacity: 1;
 }
 
+.carousel-item.active .heroProjectsImage{
+    height: 55vh
+}
 .carousel-item.prev,
 .carousel-item.next {
     transform: translateX(-100%) scale(0.8);
