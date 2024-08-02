@@ -1,49 +1,91 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import './Home.css'
+import React, { useEffect, useState, useRef } from 'react';
+import './Home.css';
 import HeroProjects from '../HeroProjects/HeroProjects';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from 'react-slick';
 
 function Home() {
-  
-  const [projects, setProjects] = useState([])
-  const [selectedCategory, setSelectedCategory] = useState('All')
-
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true
-  };
-  
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
+  const [projects, setProjects] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentSlide, setCurrentSlide] = useState({});
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const autoplayRef = useRef(null);
 
   useEffect(() => {
     fetch('/data.json')
-    .then((response) => response.json())
-    .then((responseData) => {
-      setProjects(responseData.projects);
-    });
+      .then((response) => response.json())
+      .then((responseData) => {
+        setProjects(responseData.projects.map(project => ({
+          ...project,
+          projectsImages: [...(project.images1 || []), ...(project.images2 || [])]
+        })));
+      });
   }, []);
 
-  const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" ]
+  const handleDragStart = (e, projectIndex) => {
+    setIsDragging(true);
+    setStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
+    clearInterval(autoplayRef.current);
+  };
+
+  const handleDragMove = (e, projectIndex) => {
+    if (!isDragging) return;
+    
+    const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const diff = startX - currentX;
+
+    if (Math.abs(diff) > 50) {
+      moveCarousel(diff > 0 ? 1 : -1, projectIndex);
+      setIsDragging(false);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    autoplayRef.current = setInterval(() => {
+      projects.forEach((_, index) => nextSlide(index));
+    }, 4000);
+  };
+
+  const moveCarousel = (direction, projectIndex) => {
+    setCurrentSlide((prev) => {
+      const slides = projects[projectIndex]?.projectsImages || [];
+      const totalSlides = slides.length;
+      if (totalSlides <= 1) return prev;
+
+      let newIndex = (prev[projectIndex] || 0) + direction;
+      if (newIndex < 0) newIndex = totalSlides - 1;
+      if (newIndex >= totalSlides) newIndex = 0;
+
+      return { ...prev, [projectIndex]: newIndex };
+    });
+  };
+
+  const nextSlide = (projectIndex) => {
+    moveCarousel(1, projectIndex);
+  };
+
+  useEffect(() => {
+    autoplayRef.current = setInterval(() => {
+      projects.forEach((_, index) => nextSlide(index));
+    }, 4000);
+
+    return () => clearInterval(autoplayRef.current);
+  }, [projects]);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setCurrentSlide({});
+  };
+
+  const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"];
 
   return (
-    <div  className={`homeContainer heroProjectsWrapper category-${selectedCategory.toLowerCase()}`}>
-      < HeroProjects  onCategoryChange={handleCategoryChange}/>
+    <div className={`homeContainer heroProjectsWrapper category-${selectedCategory.toLowerCase()}`}>
+      <HeroProjects onCategoryChange={handleCategoryChange} />
       <div className='allProjectsBox'>
-        {
-        projects
-        .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
-        .map((e, i)=> {
-          return (
+        {projects
+          .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))
+          .map((e, i) => (
             <div key={i}>
               <div className='separatorLine'></div>
               <h2 className='projectTitle'> {numbers[i]}{e.name}</h2>
@@ -51,45 +93,39 @@ function Home() {
               <p className='projectDescription'>{e.description}</p>
               
               <div className='carouselContainer'>
-              <Slider {...settings}>
-                {e.images1?.map((el, index) => {
-                  const isVideo = el.endsWith('.mp4');
-                  return (
-                    <div key={index} className='carouselImageContainer'>
-                      {
-                        isVideo ? (
-                          <video className='imageCarousel' src={el} controls loading="lazy" />
-                        ) : (
-                          <img className='imageCarousel' src={el} loading="lazy" />
-                        )
-                      }
-                    </div>
-                  );
-                })}
-                {e.images2?.map((el, index) => {
-                  const isVideo = el.endsWith('.mp4');
-                  return (
-                    <div key={index} className='carouselImageContainer'>
-                      {
-                        isVideo ? (
-                          <video className='imageCarousel' src={el} controls loading="lazy" />
-                        ) : (
-                          <img className='imageCarousel' src={el} loading="lazy" />
-                        )
-                      }
-                    </div>
-                  );
-                })}
-              </Slider>
+                <div
+                  className='carousel-containerHome'
+                  onMouseDown={(event) => handleDragStart(event, i)}
+                  onMouseMove={(event) => handleDragMove(event, i)}
+                  onMouseUp={handleDragEnd}
+                  onMouseLeave={handleDragEnd}
+                  onTouchStart={(event) => handleDragStart(event, i)}
+                  onTouchMove={(event) => handleDragMove(event, i)}
+                  onTouchEnd={handleDragEnd}
+                >
+                  <div className='carouselHome' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
+                    {e.projectsImages?.map((el, index) => {
+                      const isVideo = el.endsWith('.mp4');
+                      return (
+                        <div key={index} className='carousel-itemHome'>
+                          {isVideo ? (
+                            <video className='imageCarouselHome' src={el} controls loading="lazy" />
+                          ) : (
+                            <img className='imageCarouselHome' src={el} loading="lazy" />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
 
-            </div>  
-          )
-        })
+            </div>
+          ))
         }
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

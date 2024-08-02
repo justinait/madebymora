@@ -12,7 +12,6 @@ function HeroProjects({ onCategoryChange }) {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const categories = [     'All' , 'Graphic', 'Audiovisual', '3D', 'Photos']
-  const containerRef = useRef(null);
   const extraProjects = [
     {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]   },
     {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]       }

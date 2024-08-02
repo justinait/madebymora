@@ -91,7 +91,7 @@
 .projectTitleContainer {
     display: -webkit-box;
 }
-.imageCarousel {
+/* .imageCarousel {
     width: 100%;
 }
 .slick-prev, .slick-next {
@@ -103,7 +103,7 @@
 .carouselContainer .slick-initialized .slick-slide {
     display: flex !important;
     align-items: center !important;
-}
+} */
 
 @media(min-width:700px){
     .projectTitle {
@@ -116,3 +116,35 @@
         font-size: 14px;
     }
 }
+.carousel-containerHome {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carouselHome {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-itemHome {
+    min-width: 100%;
+    flex: 1 0 100%;
+    height: 65vh;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carouselImageContainerHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imageCarouselHome {
+    max-width: 90%;
+    max-height: 500px;
+    object-fit: cover;
+  }
+  
