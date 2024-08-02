@@ -152,20 +152,20 @@
 }
 
 .carousel-item.active .heroProjectsImage{
-    height: 60vh
+    height: 58vh
 }
 .carousel-item.prev,
 .carousel-item.next {
-    transform: translateX(-100%) scale(0.8);
+    transform: translateX(100%) scale(0.8);
     z-index: 1;
     opacity: 1;
+}
+.carousel-item.prev {
+    transform: translateX(-100%) scale(0.8);
 }
 .carousel-item.prev .heroProjectInfo,
 .carousel-item.next .heroProjectInfo{
     display: none;
-}
-.carousel-item.next {
-    transform: translateX(100%) scale(0.8);
 }
 @media(min-width:700px){
     .titlesBoxHero {

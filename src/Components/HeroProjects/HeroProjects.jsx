@@ -31,9 +31,11 @@ function HeroProjects({ onCategoryChange }) {
     const filtered = projects
       .filter(e => e.name !== 'PHOTOGRAPHY')
       .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)));
-    const filteredExtra = extraProjects
-      .filter(e => selectedCategory === 'All' || selectedCategory === 'Photos');
-    setFilteredProjects([...filtered, ...filteredExtra]);
+    const filteredExtra = extraProjects.filter(e => selectedCategory === 'All' || selectedCategory === 'Photos');
+    
+    const combinedProjects = [...filtered, ...filteredExtra];
+    setFilteredProjects(combinedProjects);
+    setActiveIndex(combinedProjects.length > 0 ? 0 : -1);
   }, [projects, selectedCategory]);
 
   const handleDragStart = (e) => {
@@ -58,9 +60,23 @@ function HeroProjects({ onCategoryChange }) {
   };
   
   const moveCarousel = (direction) => {
-    setActiveIndex((current) => 
-      (current + direction + filteredProjects.length) % filteredProjects.length
-    );
+    if (filteredProjects.length <= 1) return;
+  
+    setActiveIndex((current) => {
+      let newIndex = (current + direction + filteredProjects.length) % filteredProjects.length;
+  
+      // if (filteredProjects.length === 2) {
+        // if (direction === 1 && newIndex === 0) {
+        //   newIndex = 1;
+        // } 
+        // else
+         if (direction === -1 && newIndex === 1) {
+          newIndex = 0;
+        }
+      // }
+  
+      return newIndex;
+    });
   };
 
   useEffect(() => {
@@ -68,8 +84,8 @@ function HeroProjects({ onCategoryChange }) {
     .then((response) => response.json())
     .then((responseData) => {
       const shuffledProjects = responseData.projects.sort(() => Math.random() - 0.5);
-      const allProjects = [...shuffledProjects, ...extraProjects];
-      setProjects(allProjects);
+      // const allProjects = [...shuffledProjects, ...extraProjects];
+      setProjects(shuffledProjects);
     });
   }, []);
   
@@ -145,12 +161,22 @@ function HeroProjects({ onCategoryChange }) {
           onTouchEnd={handleDragEnd}>
           {filteredProjects.map((project, index) => {
             let className = 'carousel-item';
-            if (index === activeIndex) {
-              className += ' active';
-            } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
-              className += ' prev';
-            } else if (index === (activeIndex + 1) % filteredProjects.length) {
-              className += ' next';
+            if(filteredProjects.length > 2){
+              if (index === activeIndex) {
+                className += ' active';
+              } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+                className += ' prev';
+              } else if (index === (activeIndex + 1) % filteredProjects.length) {
+                className += ' next';
+              }
+            } else {
+              if (index === activeIndex) {
+                className += ' active';
+              } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+                className += ' next';
+              } else if (index === (activeIndex + 1) % filteredProjects.length) {
+                className += ' prev';
+              }
             }
             return (
               <div 
