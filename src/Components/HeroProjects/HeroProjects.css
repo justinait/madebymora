@@ -33,7 +33,6 @@
 .categoryItem, .heroLinks {
     flex: 0 0 auto;
     cursor: pointer;
-
 }
 .categoryItemActive {
     font-weight: 600;
@@ -42,12 +41,9 @@
     color: white;
     display: flex;
     justify-content: space-between;
-    /* margin: 0px 5px 20px; */
-    /* align-items: flex-end; */
     text-transform: uppercase;
     line-height: 2.5;
     flex-direction: row;
-    
     padding: 40px 10px;
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -92,27 +88,6 @@
     overflow: hidden;
 }
   
-.heroProjectSlide {
-    position: relative;
-    padding: 0 10px;
-    transition: transform 0.5s ease-in-out;
-
-    flex: 0 0 auto;
-    width: 70%;
-}
-
-.heroProjectSlide.prev {
-    transform: scale(0.8); /* Ajusta según el efecto deseado */
-}
-  
-.heroProjectSlide.next {
-    transform: scale(0.8); /* Ajusta según el efecto deseado */
-}
-  
-.heroProjectSlide.active {
-    transform: scale(1); /* Asegura que la diapositiva activa sea completamente visible */
-    opacity: 1;
-}
 .slider-fade-container {
     position: relative;
 }
@@ -120,8 +95,7 @@
     width: 100%;
     height: 55vh;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    box-shadow: 0 16px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 17px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .heroProjectInfo {
     width: -webkit-fill-available;
@@ -157,18 +131,36 @@
   
 .carousel-item {
     position: absolute;
-    width: 75vw;
     transition: all 0.5s ease;
+    width: 75vw;
+    transform: translateX(0) scale(0.7);
+    height: 40vh;
+    margin-bottom: 10%;
+    z-index: 0;
+    opacity: 0;
 }
 
 .carousel-item.active {
     z-index: 2;
+    transform: translateX(0) scale(1);
+    height: 60vh;
+    margin-bottom: 0;
+    opacity: 1;
 }
 
-.carousel-item p:nth-child(2) {
-    /* bottom: 500px; */
+.carousel-item.prev,
+.carousel-item.next {
+    transform: translateX(-100%) scale(0.8);
+    z-index: 1;
+    opacity: 1;
 }
-
+.carousel-item.prev .heroProjectInfo,
+.carousel-item.next .heroProjectInfo{
+    display: none;
+}
+.carousel-item.next {
+    transform: translateX(100%) scale(0.8);
+}
 @media(min-width:700px){
     .titlesBoxHero {
         margin: 50px 0;

@@ -36,54 +36,26 @@ function HeroProjects({ onCategoryChange }) {
     setFilteredProjects([...filtered, ...filteredExtra]);
   }, [projects, selectedCategory]);
 
-  const getItemStyle = (index) => {
-    const diff = (index - activeIndex + filteredProjects.length) % filteredProjects.length;
-    let translateX = 0;
-    let scale = 0.7;
-    let height = '40vh';
-    let zIndex = 0;
-    let marginBottom = '30%'
 
-    if (diff === 0) {
-      scale = 1;
-      zIndex = 2;
-      height = '60vh';
-      marginBottom = '0%'
-    } else if (diff === 1 || diff === projects.length - 1) {
-      translateX = diff === 1 ? 100 : -100;
-      zIndex = 1;
-    } else {
-      translateX = diff === 2 ? 200 : -200;
-    }
-
-    return {
-      transform: `translateX(${translateX}%) scale(${scale})`,
-      zIndex,
-      height,
-      marginBottom,
-      transition: 'all 0.5s ease',
-    };
-  };
-
-  const handleMouseDown = (e) => {
-    const startX = e.pageX;
-    const handleMouseMove = (e) => {
-      const diff = startX - e.pageX;
-      if (Math.abs(diff) > 50) {
-        setActiveIndex((current) => 
-          (current + (diff > 0 ? 1 : -1) + filteredProjects.length) % filteredProjects.length
-        );
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      }
-    };
-    const handleMouseUp = () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-  };
+  // const handleMouseDown = (e) => {
+  //   const startX = e.pageX;
+  //   const handleMouseMove = (e) => {
+  //     const diff = startX - e.pageX;
+  //     if (Math.abs(diff) > 50) {
+  //       setActiveIndex((current) => 
+  //         (current + (diff > 0 ? 1 : -1) + filteredProjects.length) % filteredProjects.length
+  //       );
+  //       document.removeEventListener('mousemove', handleMouseMove);
+  //       document.removeEventListener('mouseup', handleMouseUp);
+  //     }
+  //   };
+  //   const handleMouseUp = () => {
+  //     document.removeEventListener('mousemove', handleMouseMove);
+  //     document.removeEventListener('mouseup', handleMouseUp);
+  //   };
+  //   document.addEventListener('mousemove', handleMouseMove);
+  //   document.addEventListener('mouseup', handleMouseUp);
+  // };
   const handleDragStart = (e) => {
     setIsDragging(true);
     setStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
@@ -110,7 +82,6 @@ function HeroProjects({ onCategoryChange }) {
       (current + direction + filteredProjects.length) % filteredProjects.length
     );
   };
-
 
   useEffect(() => {
     fetch('/data.json')
@@ -184,21 +155,27 @@ function HeroProjects({ onCategoryChange }) {
 
       <div className="carousel-container">
         <div
-        className="carousel" 
-        onMouseDown={handleDragStart}
-        onMouseMove={handleDragMove}
-        onMouseUp={handleDragEnd}
-        onMouseLeave={handleDragEnd}
-        onTouchStart={handleDragStart}
-        onTouchMove={handleDragMove}
-        onTouchEnd={handleDragEnd}>
-          {filteredProjects
-            .map((project, index) => (
+          className="carousel" 
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragMove}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
+          onTouchStart={handleDragStart}
+          onTouchMove={handleDragMove}
+          onTouchEnd={handleDragEnd}>
+          {filteredProjects.map((project, index) => {
+            let className = 'carousel-item';
+            if (index === activeIndex) {
+              className += ' active';
+            } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+              className += ' prev';
+            } else if (index === (activeIndex + 1) % filteredProjects.length) {
+              className += ' next';
+            }
+            return (
               <div 
                 key={index} 
-                className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
-                style={getItemStyle(index)}
-              >
+                className={className}>
                 <div className="heroProjectInfo">
                   <p>"{project.name}"</p>
                   <p>{project.detail2}</p>
@@ -207,8 +184,8 @@ function HeroProjects({ onCategoryChange }) {
                   <img src={project.image} alt={project.name} className="heroProjectsImage" />
                 </div>
               </div>
-          ))}
-          
+            );
+          })}
         </div>
     </div>
 
