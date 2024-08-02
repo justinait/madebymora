@@ -36,26 +36,6 @@ function HeroProjects({ onCategoryChange }) {
     setFilteredProjects([...filtered, ...filteredExtra]);
   }, [projects, selectedCategory]);
 
-
-  // const handleMouseDown = (e) => {
-  //   const startX = e.pageX;
-  //   const handleMouseMove = (e) => {
-  //     const diff = startX - e.pageX;
-  //     if (Math.abs(diff) > 50) {
-  //       setActiveIndex((current) => 
-  //         (current + (diff > 0 ? 1 : -1) + filteredProjects.length) % filteredProjects.length
-  //       );
-  //       document.removeEventListener('mousemove', handleMouseMove);
-  //       document.removeEventListener('mouseup', handleMouseUp);
-  //     }
-  //   };
-  //   const handleMouseUp = () => {
-  //     document.removeEventListener('mousemove', handleMouseMove);
-  //     document.removeEventListener('mouseup', handleMouseUp);
-  //   };
-  //   document.addEventListener('mousemove', handleMouseMove);
-  //   document.addEventListener('mouseup', handleMouseUp);
-  // };
   const handleDragStart = (e) => {
     setIsDragging(true);
     setStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
