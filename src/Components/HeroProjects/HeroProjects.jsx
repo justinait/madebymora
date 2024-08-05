@@ -167,6 +167,10 @@ function HeroProjects({ onCategoryChange }) {
                 className += ' prev';
               } else if (index === (activeIndex + 1) % filteredProjects.length) {
                 className += ' next';
+              }else if (index === (activeIndex - 2 + filteredProjects.length) % filteredProjects.length) {
+                className += ' preprev';
+              } else if (index === (activeIndex + 2 + filteredProjects.length) % filteredProjects.length) {
+                className += ' posnext';
               }
             } else {
               if (index === activeIndex) {
@@ -175,7 +179,7 @@ function HeroProjects({ onCategoryChange }) {
                 className += ' next';
               } else if (index === (activeIndex + 1) % filteredProjects.length) {
                 className += ' prev';
-              }
+              } 
             }
             return (
               <div 
