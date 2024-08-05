@@ -41,9 +41,9 @@ function Home() {
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    autoplayRef.current = setInterval(() => {
-      projects.forEach((_, index) => nextSlide(index));
-    }, 4000);
+    // autoplayRef.current = setInterval(() => {
+    //   projects.forEach((_, index) => nextSlide(index));
+    // }, 4000);
   };
 
   const moveCarousel = (direction, projectIndex) => {
@@ -64,13 +64,13 @@ function Home() {
     moveCarousel(1, projectIndex);
   };
 
-  useEffect(() => {
-    autoplayRef.current = setInterval(() => {
-      projects.forEach((_, index) => nextSlide(index));
-    }, 4000);
+  // useEffect(() => {
+  //   autoplayRef.current = setInterval(() => {
+  //     projects.forEach((_, index) => nextSlide(index));
+  //   }, 4000);
 
-    return () => clearInterval(autoplayRef.current);
-  }, [projects]);
+  //   return () => clearInterval(autoplayRef.current);
+  // }, [projects]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -106,13 +106,20 @@ function Home() {
                   <div className='carouselHome' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
                     {e.projectsImages?.map((el, index) => {
                       const isVideo = el.endsWith('.mp4');
+                      const length = e.projectsImages.length
                       return (
-                        <div key={index} className='carousel-itemHome'>
-                          {isVideo ? (
-                            <video className='imageCarouselHome' src={el} controls loading="lazy" />
-                          ) : (
-                            <img className='imageCarouselHome' src={el} loading="lazy" />
-                          )}
+                        <div key={index}  className='carousel-itemHome'>
+                          <div>
+                            {isVideo ? (
+                              <video className='imageCarouselHome' src={el} controls loading="lazy" />
+                            ) : (
+                              <img className='imageCarouselHome' src={el} loading="lazy" />
+                            )}
+                          </div>
+                          <div className='infoCarouselHome'>
+                            <p className='infoCarouselHomeBox'>YEAR / {e.year}</p>
+                            <p className='infoCarouselHomeBox'> {index+1} / {length} </p>
+                          </div>
                         </div>
                       );
                     })}
