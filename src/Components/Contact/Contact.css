@@ -51,3 +51,11 @@
     margin: 0;
     line-height: 2;
 }
+@media(min-width:700px){
+    .contactContainer {
+        font-size: 16px;
+    }
+    .linksContactSocial {
+        width: 40vw;
+    }
+}
