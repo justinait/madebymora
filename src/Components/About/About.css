@@ -93,3 +93,20 @@
         font-size: 13px;
     }
 }
+
+@media(min-width: 1000px){
+    
+    .titlesContainerAbout .titleMora {
+        font-size: 34px;
+    }
+    .titlesContainerAbout .subtitleMora {
+        font-size: 22px;
+    }
+    .cvAbout, .linksAbout {
+        font-size: 16px;
+    }
+    .skillsAboutDiv h6 {
+        width: 100px;
+        font-size: 16px;
+    }
+}

@@ -132,6 +132,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    font-size: 14px;
 }
 .infoCarouselHomeBox {
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -141,20 +142,32 @@
 @media(min-width:700px){
     .projectTitle {
         font-size: 40px;
+        margin: 0.5em 0;
     }
-    .projectDetail {
-        font-size: 14px;
-    }
-    .projectDescription {
+    .projectDetail, .projectDescription {
         font-size: 14px;
     }
     .allProjectsBox {
         padding: 0 30px;
     }
-    .projectTitle {
-        margin: 0.5em 0;
+    .imageCarouselHome { 
+        max-height: 600px;  
     }
-    .carousel-itemHome {
-        /* justify-content: space-evenly; */
+    .infoCarouselHome {
+        font-size: 16px;
     }
 }
+
+@media(min-width:1000px){
+    
+    .projectTitle {
+        margin: 0.8em 0;
+    }
+    .carouselItemHome {
+        height: 60vh;
+    }
+    .projectDetail, .projectDescription {
+        font-size: 15px;
+    }
+}
+
