@@ -60,10 +60,6 @@ function Home() {
     });
   };
 
-  const nextSlide = (projectIndex) => {
-    moveCarousel(1, projectIndex);
-  };
-
   // useEffect(() => {
   //   autoplayRef.current = setInterval(() => {
   //     projects.forEach((_, index) => nextSlide(index));
@@ -92,38 +88,36 @@ function Home() {
               <p className='projectDetail'>{e.detail}</p>
               <p className='projectDescription'>{e.description}</p>
               
-              <div className='carouselContainer'>
-                <div
-                  className='carousel-containerHome'
-                  onMouseDown={(event) => handleDragStart(event, i)}
-                  onMouseMove={(event) => handleDragMove(event, i)}
-                  onMouseUp={handleDragEnd}
-                  onMouseLeave={handleDragEnd}
-                  onTouchStart={(event) => handleDragStart(event, i)}
-                  onTouchMove={(event) => handleDragMove(event, i)}
-                  onTouchEnd={handleDragEnd}
-                >
-                  <div className='carouselHome' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
-                    {e.projectsImages?.map((el, index) => {
-                      const isVideo = el.endsWith('.mp4');
-                      const length = e.projectsImages.length
-                      return (
-                        <div key={index}  className='carousel-itemHome'>
-                          <div>
-                            {isVideo ? (
-                              <video className='imageCarouselHome' src={el} controls loading="lazy" />
-                            ) : (
-                              <img className='imageCarouselHome' src={el} loading="lazy" />
-                            )}
-                          </div>
-                          <div className='infoCarouselHome'>
-                            <p className='infoCarouselHomeBox'>YEAR / {e.year}</p>
-                            <p className='infoCarouselHomeBox'> {index+1} / {length} </p>
-                          </div>
+              <div
+                className='carouselContainerHome'
+                onMouseDown={(event) => handleDragStart(event, i)}
+                onMouseMove={(event) => handleDragMove(event, i)}
+                onMouseUp={handleDragEnd}
+                onMouseLeave={handleDragEnd}
+                onTouchStart={(event) => handleDragStart(event, i)}
+                onTouchMove={(event) => handleDragMove(event, i)}
+                onTouchEnd={handleDragEnd}
+              >
+                <div className='carouselHome' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
+                  {e.projectsImages?.map((el, index) => {
+                    const isVideo = el.endsWith('.mp4');
+                    const length = e.projectsImages.length
+                    return (
+                      <div key={index}  className='carouselItemHome'>
+                        <div className='carouselImageContainerHome'>
+                          {isVideo ? (
+                            <video className='imageCarouselHome' src={el} controls loading="lazy" />
+                          ) : (
+                            <img className='imageCarouselHome' src={el} loading="lazy" />
+                          )}
                         </div>
-                      );
-                    })}
-                  </div>
+                        <div className='infoCarouselHome'>
+                          <p className='infoCarouselHomeBox'>YEAR / {e.year}</p>
+                          <p className='infoCarouselHomeBox'> {index+1} / {length} </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
