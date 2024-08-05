@@ -147,4 +147,13 @@
     .projectDescription {
         font-size: 14px;
     }
+    .allProjectsBox {
+        padding: 0 30px;
+    }
+    .projectTitle {
+        margin: 0.5em 0;
+    }
+    .carousel-itemHome {
+        /* justify-content: space-evenly; */
+    }
 }
