@@ -169,7 +169,7 @@
 }
 @media(min-width:700px){
     .titlesBoxHero {
-        margin: 50px 0;
+        margin: 50px 0 30px;
     }
     .titleMora{
         font-size: 30px;
@@ -178,9 +178,24 @@
         font-size: 20px;
     }
     .heroProjectInfo {
-        font-size: 15px;
+        font-size: 16px;
+    }
+    .heroProjectsImage {
+        height: 45vh;
     }
     .categoryItem, .aboutLink{
         font-size: 15px;
+    }
+    .carousel-item {
+        width: 70vw;
+    }
+    .carousel-container, .carousel{
+        height: 75vh;
+    }
+    .carousel-item.active .heroProjectsImage {
+        height: 63vh;
+    }
+    .optionsHeroProjects {
+        padding: 20px 30px;
     }
 }
