@@ -13,8 +13,8 @@ function HeroProjects({ onCategoryChange }) {
   const [startX, setStartX] = useState(0);
   const categories = [     'All' , 'Graphic', 'Audiovisual', '3D', 'Photos']
   const extraProjects = [
-    {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]   },
-    {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"]       }
+    {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"   },
+    {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"       }
   ]
   const [activeIndex, setActiveIndex] = useState(0);
 
