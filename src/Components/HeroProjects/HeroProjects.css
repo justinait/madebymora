@@ -228,8 +228,7 @@
     }
     
     .carousel-item {
-        width: 380px;
-        /* flex: 0 0 25%; */
+        width: 30vw;
     }
         
     .carousel-item.one {
@@ -267,10 +266,15 @@
     }
     .carousel-item:hover .heroProjectsImage {
         height: 60vh;
-        z-index: 2;
         opacity: 1;
     }
-    .carousel-item:hover .heroProjectInfo {
-        display: block !important;
+    .carousel-item:hover .heroProjectInfo, .clicked .heroProjectInfo {
+        display: block;
+    }
+    .clicked  {
+        transform: translateX(0%) scale(1) !important;
+        height: 70vh;
+        opacity: 1;
+        width: 85vw;
     }
 }

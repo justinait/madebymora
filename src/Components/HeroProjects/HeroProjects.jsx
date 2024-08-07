@@ -18,7 +18,14 @@ function HeroProjects({ onCategoryChange }) {
   ]
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [clicked, setClicked] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState(null);
 
+  const handleImageClick = (index) => {
+    if(isDesktop){
+      setClickedIndex(clickedIndex === index ? null : index);
+    }
+  };
   const checkScreenSize = () => {
     setIsDesktop(window.innerWidth >= 1024);
   };
@@ -198,6 +205,9 @@ function HeroProjects({ onCategoryChange }) {
                   className += ' one';
                 } 
               }
+              if (clickedIndex === index) {
+                className += ' clicked';
+              }
             } else {
               if(filteredProjects.length > 2){
                 if (index === activeIndex) {
@@ -220,13 +230,19 @@ function HeroProjects({ onCategoryChange }) {
             return (
               <div 
                 key={index} 
-                className={className}>
+                className={className }
+              >
                 <div className="heroProjectInfo">
                   <p>"{project.name}"</p>
                   <p>{project.detail2}</p>
                 </div>
                 <div className="slider-fade-container">
-                  <img src={project.image} alt={project.name} className="heroProjectsImage" />
+                  <img 
+                  onClick={() => handleImageClick(index)} 
+                  src={project.image} 
+                  alt={project.name} 
+                  className={`heroProjectsImage ${clickedIndex === index ? 'clicked' : ''}`}
+                   />
                 </div>
               </div>
             );
