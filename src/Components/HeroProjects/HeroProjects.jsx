@@ -11,6 +11,7 @@ function HeroProjects({ onCategoryChange }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const [scrollAccumulator, setScrollAccumulator] = useState(0);
   const categories = [     'All' , 'Graphic', 'Audiovisual', '3D', 'Photos']
   const extraProjects = [
     {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"   },
@@ -18,14 +19,22 @@ function HeroProjects({ onCategoryChange }) {
   ]
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
-  const [clicked, setClicked] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
 
-  const handleImageClick = (index) => {
+  const handleImageClick = (index, e) => {
     if(isDesktop){
-      setClickedIndex(clickedIndex === index ? null : index);
+      // e.stopPropagation(); // Prevent triggering the parent click handler
+      if (clickedIndex) return; // Do nothing if dragging
+  
+      // Toggle the clicked image
+      setClickedIndex(prevIndex => (prevIndex === index ? null : index));
     }
   };
+  const handleAnyClick = () => {
+    // if (isDragging) return; // Do not reset clickedIndex if dragging
+    // setClickedIndex(null); // Reset clicked index to hide info
+  };
+
   const checkScreenSize = () => {
     setIsDesktop(window.innerWidth >= 1024);
   };
@@ -61,6 +70,7 @@ function HeroProjects({ onCategoryChange }) {
   const handleDragStart = (e) => {
     setIsDragging(true);
     setStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
+    setClickedIndex(null);
   };
   
   const handleDragMove = (e) => {
@@ -85,14 +95,8 @@ function HeroProjects({ onCategoryChange }) {
     setActiveIndex((current) => {
       let newIndex = (current + direction + filteredProjects.length) % filteredProjects.length;
   
-      // if (filteredProjects.length === 2) {
-        // if (direction === 1 && newIndex === 0) {
-        //   newIndex = 1;
-        // } 
-        // else
-         if (direction === -1 && newIndex === 1) {
-          newIndex = 0;
-        }
+      // if (direction === -1 && newIndex === 1) {
+      //   newIndex = 0;
       // }
   
       return newIndex;
@@ -149,7 +153,24 @@ function HeroProjects({ onCategoryChange }) {
     return num.toString().split('').map(digit => superscriptMap[digit]).join('');
   };
 
-  
+  const handleTrackpadScroll = (e) => {
+    e.preventDefault();
+    
+    setScrollAccumulator(prev => prev + e.deltaX);
+    
+    // Definir el umbral como 1/5 del ancho de la pantalla
+    const threshold = window.innerWidth / 3;
+    
+    if (Math.abs(scrollAccumulator) > threshold) {
+      // Determinar la dirección del scroll
+      const direction = scrollAccumulator > 0 ? 1 : -1;
+      
+      moveCarousel(direction);
+      
+      // Resetear el acumulador
+      setScrollAccumulator(0);
+    }
+  };
   const toggleBlur = () => {
     setIsBlurred(!isBlurred);
   };
@@ -169,7 +190,7 @@ function HeroProjects({ onCategoryChange }) {
         <p className='subtitleMora'>Integral & Multidisciplinary Designer</p>
       </div>
 
-      <div className="carousel-container">
+      <div className="carousel-container"  >
         <div
           className="carousel" 
           onMouseDown={handleDragStart}
@@ -178,7 +199,10 @@ function HeroProjects({ onCategoryChange }) {
           onMouseLeave={handleDragEnd}
           onTouchStart={handleDragStart}
           onTouchMove={handleDragMove}
-          onTouchEnd={handleDragEnd}>
+          onTouchEnd={handleDragEnd}
+          onWheel={handleTrackpadScroll}
+        >
+            
           {filteredProjects.map((project, index) => {
             let className = 'carousel-item';
             if(isDesktop) {
@@ -238,11 +262,11 @@ function HeroProjects({ onCategoryChange }) {
                 </div>
                 <div className="slider-fade-container">
                   <img 
-                  onClick={() => handleImageClick(index)} 
+                  onClick={(e) => handleImageClick(index, e)} 
                   src={project.image} 
                   alt={project.name} 
                   className={`heroProjectsImage ${clickedIndex === index ? 'clicked' : ''}`}
-                   />
+                  />
                 </div>
               </div>
             );

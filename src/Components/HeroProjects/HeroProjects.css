@@ -134,7 +134,7 @@
   
 .carousel-item {
     position: absolute;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-in-out;
     width: 75vw;
     transform: translateX(0) scale(0.8);
     z-index: 0;
@@ -229,32 +229,28 @@
     
     .carousel-item {
         width: 30vw;
+        transform: translateX(250%) scale(0.8);
     }
         
     .carousel-item.one {
         transform: translateX(-188%) scale(0.8);
-        z-index: 1;
         opacity: 1;
     }
     .carousel-item.two {
         transform: translateX(-90%) scale(0.8);
-        z-index: 1;
         opacity: 1;
     }
     .carousel-item.three {
         transform: translateX(10%) scale(0.8);
-        z-index: 1;
         opacity: 1;
     }
 
     .carousel-item.four {
         transform: translateX(100%) scale(0.8);
-        z-index: 1;
         opacity: 1;
     }
     .carousel-item.five {
         transform: translateX(190%) scale(0.8);
-        z-index: 1;
         opacity: 1;
     }
     .heroProjectInfo
@@ -265,7 +261,7 @@
         padding: 4vh 0;
     }
     .carousel-item:hover .heroProjectsImage {
-        height: 60vh;
+        height: 70vh;
         opacity: 1;
     }
     .carousel-item:hover .heroProjectInfo, .clicked .heroProjectInfo {
@@ -275,6 +271,7 @@
         transform: translateX(0%) scale(1) !important;
         height: 70vh;
         opacity: 1;
+        z-index: 5;
         width: 85vw;
     }
 }
