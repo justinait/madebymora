@@ -229,54 +229,51 @@
     
     .carousel-item {
         width: 380px;
-        flex: 0 0 25%;
+        /* flex: 0 0 25%; */
     }
-    
-    .carousel-item.active {
-        z-index: 2;
-        transform: translateX(-90%) scale(1);
-        margin-bottom: 0;
-        opacity: 1;
-    }
-
-    .carousel-item.active .heroProjectsImage {
-        height: 60vh
-    }
-    .carousel-item.preprev {
-        transform: translateX(10%) scale(0.8);
-        z-index: 1;
-        opacity: 0;
-    }
-    /* .carousel-item.prev, */
-    .carousel-item.next {
-        transform: translateX(10%) scale(0.8);
-        z-index: 1;
-        opacity: 1;
-    }
-    .carousel-item.prev {
+        
+    .carousel-item.one {
         transform: translateX(-188%) scale(0.8);
         z-index: 1;
         opacity: 1;
     }
+    .carousel-item.two {
+        transform: translateX(-90%) scale(0.8);
+        z-index: 1;
+        opacity: 1;
+    }
+    .carousel-item.three {
+        transform: translateX(10%) scale(0.8);
+        z-index: 1;
+        opacity: 1;
+    }
 
-    .carousel-item.posnext {
+    .carousel-item.four {
         transform: translateX(100%) scale(0.8);
         z-index: 1;
         opacity: 1;
     }
-    .carousel-item.posposnext {
+    .carousel-item.five {
         transform: translateX(190%) scale(0.8);
         z-index: 1;
         opacity: 1;
     }
-    .carousel-item.prev .heroProjectInfo,
-    .carousel-item.next .heroProjectInfo,
-    .carousel-item.preprev .heroProjectInfo,
-    .carousel-item.posnext .heroProjectInfo,
-    .carousel-item.posposnext .heroProjectInfo{
+    .carousel-item.one .heroProjectInfo,
+    .carousel-item.two .heroProjectInfo,
+    .carousel-item.three .heroProjectInfo,
+    .carousel-item.four .heroProjectInfo,
+    .carousel-item.five .heroProjectInfo{
         display: none;
     }
     .titlesBoxHero {
         padding: 4vh 0;
+    }
+    .heroProjectsImage:hover {
+        height: 60vh;
+        z-index: 2;
+        opacity: 1;
+    }
+    .heroProjectsImage:hover .heroProjectInfo {
+        display: block;
     }
 }

@@ -17,6 +17,20 @@ function HeroProjects({ onCategoryChange }) {
     {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"       }
   ]
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+
+  const checkScreenSize = () => {
+    setIsDesktop(window.innerWidth >= 1024);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', checkScreenSize);
+    checkScreenSize();
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
 
   useEffect(() => {
     // const interval = setInterval(() => {
@@ -160,28 +174,48 @@ function HeroProjects({ onCategoryChange }) {
           onTouchEnd={handleDragEnd}>
           {filteredProjects.map((project, index) => {
             let className = 'carousel-item';
-            if(filteredProjects.length > 2){
-              if (index === activeIndex) {
-                className += ' active';
-              } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
-                className += ' prev';
-              } else if (index === (activeIndex + 1) % filteredProjects.length) {
-                className += ' next';
-              } else if (index === (activeIndex - 2 + filteredProjects.length) % filteredProjects.length) {
-                className += ' preprev';
-              } else if (index === (activeIndex + 2 + filteredProjects.length) % filteredProjects.length) {
-                className += ' posnext';
-              } else if (index === (activeIndex + 3 + filteredProjects.length) % filteredProjects.length) {
-                className += ' posposnext';
+            if(isDesktop) {
+              if(filteredProjects.length > 2){
+                if (index === activeIndex) {
+                  className += ' three';
+                } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' two';
+                } else if (index === (activeIndex + 1) % filteredProjects.length) {
+                  className += ' four';
+                } else if (index === (activeIndex - 2 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' one';
+                } else if (index === (activeIndex + 2 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' five';
+                } else if (index === (activeIndex + 3 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' six';
+                }
+              } else {
+                if (index === activeIndex) {
+                  className += ' two';
+                } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' three';
+                } else if (index === (activeIndex + 1) % filteredProjects.length) {
+                  className += ' one';
+                } 
               }
             } else {
-              if (index === activeIndex) {
-                className += ' active';
-              } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
-                className += ' next';
-              } else if (index === (activeIndex + 1) % filteredProjects.length) {
-                className += ' prev';
-              } 
+              if(filteredProjects.length > 2){
+                if (index === activeIndex) {
+                  className += ' active';
+                } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' prev';
+                } else if (index === (activeIndex + 1) % filteredProjects.length) {
+                  className += ' next';
+                }   
+              } else {
+                if (index === activeIndex) {
+                  className += ' active';
+                } else if (index === (activeIndex - 1 + filteredProjects.length) % filteredProjects.length) {
+                  className += ' next';
+                } else if (index === (activeIndex + 1) % filteredProjects.length) {
+                  className += ' prev';
+                } 
+              }
             }
             return (
               <div 
