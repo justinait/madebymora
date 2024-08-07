@@ -134,7 +134,7 @@
   
 .carousel-item {
     position: absolute;
-    transition: all 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
     width: 75vw;
     transform: translateX(0) scale(0.8);
     z-index: 0;
@@ -231,7 +231,16 @@
         width: 30vw;
         transform: translateX(250%) scale(0.8);
     }
-        
+    .carousel-item .heroProjectsImage {
+        /* transition: transform 0.5s ease-in-out, height 0.5s ease-in-out; */
+        transition: all 0.5s ease-in-out;    
+    }
+    .carousel-item:hover .heroProjectsImage {
+        height: 70vh;
+        opacity: 1;
+        cursor: pointer;
+        /* transition: transform 0.5s ease-in-out, height 0.5s ease-in-out; */
+    }
     .carousel-item.one {
         transform: translateX(-188%) scale(0.8);
         opacity: 1;
@@ -259,10 +268,6 @@
     }
     .titlesBoxHero {
         padding: 4vh 0;
-    }
-    .carousel-item:hover .heroProjectsImage {
-        height: 70vh;
-        opacity: 1;
     }
     .carousel-item:hover .heroProjectInfo, .clicked .heroProjectInfo {
         display: block;
