@@ -258,22 +258,19 @@
         z-index: 1;
         opacity: 1;
     }
-    .carousel-item.one .heroProjectInfo,
-    .carousel-item.two .heroProjectInfo,
-    .carousel-item.three .heroProjectInfo,
-    .carousel-item.four .heroProjectInfo,
-    .carousel-item.five .heroProjectInfo{
+    .heroProjectInfo
+    {
         display: none;
     }
     .titlesBoxHero {
         padding: 4vh 0;
     }
-    .heroProjectsImage:hover {
+    .carousel-item:hover .heroProjectsImage {
         height: 60vh;
         z-index: 2;
         opacity: 1;
     }
-    .heroProjectsImage:hover .heroProjectInfo {
-        display: block;
+    .carousel-item:hover .heroProjectInfo {
+        display: block !important;
     }
 }
