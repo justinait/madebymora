@@ -198,9 +198,10 @@
     margin: 0;
     top: 0;
     right: 0;
-    top: -2px;
+    top: 7px;
     right: 7px;
-    font-size: 0.7em; /* Ajusta el tamaño del número */
+    font-size: 0.7em;
+    line-height: 1;
 }
   
 .categoryText {
