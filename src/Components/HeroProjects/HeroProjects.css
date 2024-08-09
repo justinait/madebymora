@@ -188,7 +188,7 @@
 .categoryItem {
     position: relative; /* El contenedor es relativo */
     display: inline-block;
-    padding: 0 11px;
+    padding: 10px 11px;
     display: flex;
     align-items: center;
 }
