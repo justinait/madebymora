@@ -81,7 +81,9 @@
     height: 38px;
     margin: 0;
 }
-
+.whiteLink {
+    color: white;
+}
 .container {
     width: 100%;
 }
