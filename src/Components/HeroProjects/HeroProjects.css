@@ -68,11 +68,10 @@
     margin: 2px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0px 5px;
-    line-height: 3;
+    line-height: 1.5;
     height: 38px;
     display: flex;
     align-items: center;
-    /* align-items: flex-start; */
 }
 
 .container {
