@@ -2,7 +2,7 @@
     text-align: center;
     line-height: 1.5;
     margin: auto;
-    padding: 6vh 0;
+    padding: 5vh 0;
 }
 
 .titleMora{
@@ -197,12 +197,10 @@
 .categoryNumber {
     position: absolute;
     margin: 0;
-    top: 0;
-    right: 0;
-    top: 7px;
+    top: 13px;
     right: 7px;
     font-size: 0.7em;
-    line-height: 1;
+    line-height: 0;
 }
   
 .categoryText {
