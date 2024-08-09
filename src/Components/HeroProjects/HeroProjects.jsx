@@ -277,7 +277,7 @@ function HeroProjects({ onCategoryChange }) {
 
       <div className='optionsHeroProjects'>
         <div className='heroLinks'>
-          <Link to='/about' className='aboutLink' >About</Link>
+          <p className='aboutLink' ><Link to='/about' >About</Link></p>
           <p className='aboutLink' onClick={toggleBlur}>Contact</p>
         </div>
 
