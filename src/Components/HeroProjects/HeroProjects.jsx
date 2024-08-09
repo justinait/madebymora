@@ -285,7 +285,7 @@ function HeroProjects({ onCategoryChange }) {
           </div>
         </div>
 
-        {/* <div className='categoryBox' >
+        <div className='categoryBox' >
           {categories
           .map((e, i) => (
             <div
@@ -298,7 +298,7 @@ function HeroProjects({ onCategoryChange }) {
             </div>
             
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   )
