@@ -68,7 +68,7 @@
     margin: 2px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0px 5px;
-    /* height: 38px; */
+    height: 38px;
     display: flex;
     align-items: center;
 }
