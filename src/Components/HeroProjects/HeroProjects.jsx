@@ -277,8 +277,12 @@ function HeroProjects({ onCategoryChange }) {
 
       <div className='optionsHeroProjects'>
         <div className='heroLinks'>
-          <p className='aboutLink' ><Link to='/about' >About</Link></p>
-          <p className='aboutLink' onClick={toggleBlur}>Contact</p>
+          <div className='aboutLink'>
+            <p ><Link to='/about' >About</Link></p>
+          </div>
+          <div className='aboutLink'>
+            <p onClick={toggleBlur}>Contact</p>
+          </div>
         </div>
 
         {/* <div className='categoryBox' >
