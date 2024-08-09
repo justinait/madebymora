@@ -69,7 +69,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0px 5px;
     line-height: 1.5;
-    height: 43px;
+    /* height: 43px; */
     display: flex;
     align-items: center;
 }
@@ -127,6 +127,7 @@
 .heroLinks {
     display: flex;
     flex-direction: row;
+    height: 43px;
     /* width: 30%; */
     justify-content: space-between;
 }
