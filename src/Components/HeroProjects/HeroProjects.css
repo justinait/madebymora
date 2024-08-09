@@ -30,8 +30,16 @@
     font-size: 14px;
     margin: 2px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0px 5px;
+    padding: 0px 10px;
+    
+    line-height: 1.5;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* display: inline-block; */
 }
+
 .categoryItem, .heroLinks {
     flex: 0 0 auto;
     cursor: pointer;
@@ -59,9 +67,9 @@
     color: white;
     margin: 2px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 5px;
+    padding: 0px 5px;
     line-height: 1.5;
-    /* height: 43px; */
+    height: 43px;
     display: flex;
     align-items: center;
 }
@@ -184,13 +192,6 @@
 .carousel-item.preprev .heroProjectInfo,
 .carousel-item.posnext .heroProjectInfo{
     display: none;
-}
-.categoryItem {
-    position: relative; /* El contenedor es relativo */
-    display: inline-block;
-    padding: 10px 11px;
-    display: flex;
-    align-items: center;
 }
   
 .categoryNumber {
