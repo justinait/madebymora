@@ -281,21 +281,20 @@ function HeroProjects({ onCategoryChange }) {
           <p className='aboutLink' onClick={toggleBlur}>Contact</p>
         </div>
 
-        <div className='categoryBox' >
+        {/* <div className='categoryBox' >
           {categories
           .map((e, i) => (
             <div
               key={i}
               className={`categoryItem ${selectedCategory === e ? 'categoryItemActive' : ''}`}
               onClick={() => handleCategoryClick(e)}
-              // style={{ position: 'relative' }}
             >
               <p className='categoryText'>                {e}                  </p>
               <p className='categoryNumber'>{projectCounts[e] ? toSuperscript(projectCounts[e]) : ''}</p>
             </div>
             
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )
