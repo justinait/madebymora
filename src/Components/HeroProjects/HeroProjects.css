@@ -75,7 +75,7 @@
 
 .aboutLink p {
     line-height: 1;
-    margin: 0;
+    /* margin: 0; */
 }
 
 .container {
