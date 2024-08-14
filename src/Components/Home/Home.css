@@ -161,11 +161,55 @@
     .projectTitle {
         margin: 0.8em 0;
     }
+    .carouselHome {
+        display: unset;
+    }
     .carouselItemHome {
-        height: 60vh;
+        display: block;
+        height: unset;
+        min-width: unset;
+        flex: unset;
+        width: 33.3vw;
+        margin-bottom: 10px;
     }
     .projectDetail, .projectDescription {
         font-size: 17px;
     }
+    .infoCarouselHome {
+        display: none;
+    }
+    .grid-container {
+        columns: 3;
+        column-gap: 10px;
+        width: 100%;
+        display: block;
+    }
+    .carouselImageContainerHome {
+        display: unset;
+        height: unset;
+    }
+    .imageCarouselHome {
+        width: 100%;
+        height: auto;
+    }
+    /* .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: masonry;
+        gap: 10px;
+        grid-auto-flow: dense;
+    }
+    .grid-item {
+        height: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carouselImageContainerHome {
+        height: unset;
+        width: 100%;
+    } */
+
 }
 

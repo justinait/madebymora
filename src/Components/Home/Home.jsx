@@ -98,12 +98,12 @@ function Home() {
                 onTouchMove={(event) => handleDragMove(event, i)}
                 onTouchEnd={handleDragEnd}
               >
-                <div className='carouselHome' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
+                <div className='carouselHome grid-container' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
                   {e.projectsImages?.map((el, index) => {
                     const isVideo = el.endsWith('.mp4');
                     const length = e.projectsImages.length
                     return (
-                      <div key={index}  className='carouselItemHome'>
+                      <div key={index}  className='carouselItemHome grid-item'>
                         <div className='carouselImageContainerHome'>
                           {isVideo ? (
                             <video className='imageCarouselHome' src={el} controls loading="lazy" />
