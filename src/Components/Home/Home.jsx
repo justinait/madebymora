@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Home.css';
 import HeroProjects from '../HeroProjects/HeroProjects';
+import autoAnimate from '@formkit/auto-animate';
 
 function Home() {
   const [projects, setProjects] = useState([]);
@@ -10,6 +11,26 @@ function Home() {
   const [startX, setStartX] = useState(0);
   const autoplayRef = useRef(null);
 
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    parentRef.current && autoAnimate(parentRef.current);
+  }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.grid-item');
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - (window.innerHeight * 0.3)) {
+          el.classList.add('animated');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   useEffect(() => {
     fetch('/data.json')
       .then((response) => response.json())
@@ -103,7 +124,7 @@ function Home() {
                     const isVideo = el.endsWith('.mp4');
                     const length = e.projectsImages.length
                     return (
-                      <div key={index}  className='carouselItemHome grid-item'>
+                      <div key={index} ref={parentRef} className='carouselItemHome grid-item'>
                         <div className='carouselImageContainerHome'>
                           {isVideo ? (
                             <video className='imageCarouselHome' src={el} controls loading="lazy" />
