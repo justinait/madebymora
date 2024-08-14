@@ -202,7 +202,10 @@
         opacity: 1;
         transform: translateY(0);
     }
-      
+    .projectDescription {
+        
+        margin-bottom: 70px;
+    }
 
 }
 
