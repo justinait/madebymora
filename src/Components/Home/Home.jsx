@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Home.css';
 import HeroProjects from '../HeroProjects/HeroProjects';
-import autoAnimate from '@formkit/auto-animate';
 
 function Home() {
   const [projects, setProjects] = useState([]);
@@ -28,6 +27,7 @@ function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
