@@ -14,8 +14,8 @@ function HeroProjects({ onCategoryChange }) {
   const [scrollAccumulator, setScrollAccumulator] = useState(0);
   const categories = [     'All' , 'Graphic', 'Audiovisual', '3D', 'Photos']
   const extraProjects = [
-    {   name: "CHOCOLATE EN RAMA", image: "/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"   },
-    {   name: "REVOLUTION 909", image: "/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"       }
+    {   name: "CHOCOLATE EN RAMA", image: "/src/assets/images/photography/photo1.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"   },
+    {   name: "REVOLUTION 909", image: "/src/assets/images/photography/photo7.jpg", detail2: "PHOTOGRAPHY", brand:["Photos"], "year":"2024"       }
   ]
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
