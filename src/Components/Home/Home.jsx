@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Home.css';
 import HeroProjects from '../HeroProjects/HeroProjects';
+import Items from './Items';
 
 function Home() {
   const [projects, setProjects] = useState([]);
@@ -15,21 +16,39 @@ function Home() {
   useEffect(() => {
     parentRef.current && autoAnimate(parentRef.current);
   }, []);
+
+  const debounce = (func, wait = 20) => {
+    let timeout;
+    return function (...args) {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll('.grid-item');
-      elements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - (window.innerHeight * 0.3)) {
-          el.classList.add('animated');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
         }
       });
+    }, {
+      rootMargin: '0px 0px -30% 0px',
+    });
+  
+    const elements = document.querySelectorAll('.grid-item');
+    if (elements.length === 0) {
+      console.log('No se encontraron elementos .grid-item al momento de la observación');
+    } else {
+      console.log('Elementos observados:', elements);
+      elements.forEach((el) => observer.observe(el));
+    }
+  
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
     };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [projects]);
   
   useEffect(() => {
     fetch('/data.json')
@@ -62,9 +81,6 @@ function Home() {
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    // autoplayRef.current = setInterval(() => {
-    //   projects.forEach((_, index) => nextSlide(index));
-    // }, 4000);
   };
 
   const moveCarousel = (direction, projectIndex) => {
@@ -80,14 +96,6 @@ function Home() {
       return { ...prev, [projectIndex]: newIndex };
     });
   };
-
-  // useEffect(() => {
-  //   autoplayRef.current = setInterval(() => {
-  //     projects.forEach((_, index) => nextSlide(index));
-  //   }, 4000);
-
-  //   return () => clearInterval(autoplayRef.current);
-  // }, [projects]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -120,25 +128,18 @@ function Home() {
                 onTouchEnd={handleDragEnd}
               >
                 <div className='carouselHome grid-container' style={{ transform: `translateX(-${(currentSlide[i] || 0) * 100}%)` }}>
-                  {e.projectsImages?.map((el, index) => {
-                    const isVideo = el.endsWith('.mp4');
-                    const length = e.projectsImages.length
-                    return (
-                      <div key={index} ref={parentRef} className='carouselItemHome grid-item'>
-                        <div className='carouselImageContainerHome'>
-                          {isVideo ? (
-                            <video className='imageCarouselHome' src={el} controls loading="lazy" />
-                          ) : (
-                            <img className='imageCarouselHome' src={el} loading="lazy" />
-                          )}
-                        </div>
-                        <div className='infoCarouselHome'>
-                          <p className='infoCarouselHomeBox'>YEAR / {e.year}</p>
-                          <p className='infoCarouselHomeBox'> {index+1} / {length} </p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                {e.projectsImages?.map((el, index) => {
+                  console.log("Generando grid-item:", el); // Agrega este log
+                  return (
+                    <Items 
+                      key={index}
+                      el={el}
+                      index={index}
+                      length={e.projectsImages.length}
+                      e={e} 
+                    />
+                  );
+                })}
                 </div>
               </div>
 
