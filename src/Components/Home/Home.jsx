@@ -106,7 +106,9 @@ function Home() {
 
   return (
     <div className={`homeContainer heroProjectsWrapper category-${selectedCategory.toLowerCase()}`}>
+      
       <HeroProjects onCategoryChange={handleCategoryChange} />
+      
       <div className='allProjectsBox'>
         {projects
           .filter((e) => selectedCategory === 'All' || (e.brand && e.brand.some(brand => brand === selectedCategory)))

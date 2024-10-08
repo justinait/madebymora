@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.css'
 import { Link } from 'react-router-dom'
-import mora from '/src/assets/images/Perfil.webp'
+import mora from '/assets/images/Perfil.webp'
 
 function About() {
   return (
