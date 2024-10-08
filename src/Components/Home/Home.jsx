@@ -28,21 +28,20 @@ function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        // Verificamos si el elemento está en el viewport
         if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
+          entry.target.classList.add('animated'); // Al hacer scroll down
+          entry.target.style.opacity = 1; // Hacer visible el elemento
+        } else {
+          entry.target.style.opacity = 0; // Hacer invisible el elemento al hacer scroll up
         }
       });
     }, {
-      rootMargin: '0px 0px -30% 0px',
+      rootMargin: '0px 0px -300px 0px', // Ajusta el margen inferior para que inicie a 1000px
     });
   
     const elements = document.querySelectorAll('.grid-item');
-    if (elements.length === 0) {
-      console.log('No se encontraron elementos .grid-item al momento de la observación');
-    } else {
-      console.log('Elementos observados:', elements);
-      elements.forEach((el) => observer.observe(el));
-    }
+    elements.forEach((el) => observer.observe(el));
   
     return () => {
       elements.forEach((el) => observer.unobserve(el));
