@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Items = React.memo(({ el, index, length, e }) => {
   const isVideo = el.endsWith('.mp4');  // Comprueba si es un video
@@ -7,9 +8,9 @@ const Items = React.memo(({ el, index, length, e }) => {
     <div className="carouselItemHome grid-item">
       <div className="carouselImageContainerHome">
         {isVideo ? (
-          <video className="imageCarouselHome" src={el} controls preload="metadata" />
+          <video className="imageCarouselHome" src={el} controls preload='metadata' loading="lazy" />
         ) : (
-          <img className="imageCarouselHome" src={el} loading="lazy" alt={`carousel-item-${index}`} />
+          <LazyLoadImage className="imageCarouselHome" src={el} loading="lazy" alt={`carousel-item-${index}`} />
         )}
       </div>
       <div className="infoCarouselHome">

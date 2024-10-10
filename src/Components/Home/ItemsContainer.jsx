@@ -14,27 +14,27 @@ function ItemsContainer({ projects, selectedCategory }) {
     }, []);
   
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            // Verificamos si el elemento está en el viewport
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animated'); // Al hacer scroll down
-              entry.target.style.opacity = 1; // Hacer visible el elemento
-            } else {
-              entry.target.style.opacity = 0; // Hacer invisible el elemento al hacer scroll up
-            }
-          });
-        }, {
-          rootMargin: '0px 0px -300px 0px', // Ajusta el margen inferior para que inicie a 1000px
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          // Verificamos si el elemento está en el viewport
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated'); // Al hacer scroll down
+            entry.target.style.opacity = 1; // Hacer visible el elemento
+          } else {
+            entry.target.style.opacity = 0; // Hacer invisible el elemento al hacer scroll up
+          }
         });
-      
-        const elements = document.querySelectorAll('.grid-item');
-        elements.forEach((el) => observer.observe(el));
-      
-        return () => {
-          elements.forEach((el) => observer.unobserve(el));
-          observer.disconnect();
-        };
+      }, {
+        rootMargin: '0px 0px -300px 0px', // Ajusta el margen inferior para que inicie a 1000px
+      });
+    
+      const elements = document.querySelectorAll('.grid-item');
+      elements.forEach((el) => observer.observe(el));
+    
+      return () => {
+        elements.forEach((el) => observer.unobserve(el));
+        observer.disconnect();
+      };
         
     }, [projects]);
 

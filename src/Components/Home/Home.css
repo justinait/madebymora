@@ -60,7 +60,8 @@
     background-size: 100% 100%, 100% 200%;
     background-position: center, 0 0;
     background-repeat: no-repeat;
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* ??? */
 }
 .projectTitle {
     font-size: 35px;
@@ -157,7 +158,9 @@
 }
 
 @media(min-width:1000px){
-    
+    .carouselContainerHome {
+        
+    }
     .projectTitle {
         margin: 0.8em 0;
     }
