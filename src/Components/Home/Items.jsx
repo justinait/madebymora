@@ -8,7 +8,7 @@ const Items = React.memo(({ el, index, length, e }) => {
     <div className="carouselItemHome grid-item">
       <div className="carouselImageContainerHome">
         {isVideo ? (
-          <video className="imageCarouselHome" src={el} controls preload='metadata' loading="lazy" />
+          <video className="imageCarouselHome" src={el} controls loading="lazy" />
         ) : (
           <LazyLoadImage className="imageCarouselHome" src={el} loading="lazy" alt={`carousel-item-${index}`} />
         )}
